@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>伊豆家族旅行 黄金しおり 2026</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --orange: #ea580c;
+      --orange-light: #ffedd5;
+      --gold: #b45309;
+      --gold-light: #fef3c7;
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --sub-text: #475569;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 12px 12px 80px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .hero-card {
+      background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.25);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    .child-badge {
+      display: inline-block;
+      background: #fef08a;
+      color: #854d0e;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: 4px;
+    }
+    .hero-title { font-size: 21px; font-weight: 800; line-height: 1.3; margin-bottom: 6px; }
+    .hero-sub { font-size: 13px; opacity: 0.95; }
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .action-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .btn-line {
+      background: #06c755;
+      color: #fff;
+      border: none;
+      grid-column: span 2;
+      padding: 13px;
+      font-size: 14px;
+    }
+    .sec-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .sec-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .sec-title { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+    .sec-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+    .badge-blue { background: var(--primary-light); color: var(--primary-dark); }
+    .badge-green { background: var(--green-light); color: var(--green); }
+    
+    .timeline-step {
+      border-left: 2.5px solid var(--primary);
+      padding-left: 14px;
+      margin-left: 6px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 2px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .step-time { font-size: 11px; font-weight: 800; color: var(--primary-dark); }
+    .step-title { font-size: 13.5px; font-weight: 800; margin: 2px 0; }
+    .step-desc { font-size: 12px; color: var(--sub-text); }
+    .step-child {
+      background: #fffbeb;
+      border-left: 3px solid #f59e0b;
+      padding: 4px 8px;
+      border-radius: 0 6px 6px 0;
+      font-size: 11px;
+      color: #92400e;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .bottom-fix {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex;
+      gap: 8px;
+      max-width: 480px;
+      margin: 0 auto;
+      z-index: 100;
+    }
+    .btn-fix {
+      flex: 1;
+      padding: 10px;
+      border-radius: 25px;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+    }
+    .toast {
+      position: fixed;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s;
+      z-index: 200;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ヒーロー -->
+  <div class="hero-card">
+    <div class="hero-tag">🏝️ 伊豆 2泊3日</div>
+    <div class="child-badge">👦 ぐらんぱる公園＆橋立つり橋</div>
+    <h1 class="hero-title">伊豆旅行のしおり</h1>
+    <div class="hero-sub">
+      <div>📅 2026年9月21日(月・祝)〜9月23日(水・祝)</div>
+      <div>👨‍👩‍👧 家族3名（大人2名・10歳児1名）</div>
+    </div>
+  </div>
+
+  <!-- クイックアクション -->
+  <div class="quick-actions">
+    <button class="action-btn btn-line" onclick="shareToLine()">
+      💬 LINEでこの旅程を送る
+    </button>
+    <a href="tel:0557364126" class="action-btn">
+      📞 サンハトヤへ電話
+    </a>
+    <a href="tel:0557552400" class="action-btn">
+      📞 きらの里へ電話
+    </a>
+  </div>
+
+  <!-- 電車チケットまとめカード -->
+  <div class="sec-card" style="background:#f0fdf4; border-color:#86efac;">
+    <div class="sec-header">
+      <h2 class="sec-title" style="color:#15803d;">🚆 特急 踊り子 予約確定情報</h2>
+      <span class="sec-badge badge-green">指定席確定</span>
+    </div>
+    <div style="font-size:12px; margin-bottom:8px;">
+      <strong>【行き 9/21】踊り子1号</strong><br>
+      大船 09:37 ➡ 伊東 10:43
+    </div>
+    <div style="font-size:12px; background:white; padding:8px; border-radius:8px; border:1px solid #bbf7d0;">
+      <strong style="color:#15803d;">【帰り 9/23】踊り子62号（直通）</strong><br>
+      <strong>伊豆高原 16:09発 ➡ 大船 17:44着</strong><br>
+      📌 予約番号: <strong>E80864</strong><br>
+      💺 座席: <strong>7号車 16番A・16番B・15番A席</strong>
+    </div>
+  </div>
+
+  <!-- 10歳児 黄金スケジュール -->
+  <div class="sec-card">
+    <div class="sec-header">
+      <h2 class="sec-title">🗺️ 詳細タイムスケジュール</h2>
+      <span class="sec-badge badge-blue">分刻み確定版</span>
+    </div>
+
+    <!-- 1日目 -->
+    <div style="font-weight:800; font-size:13px; color:#0284c7; margin-bottom:8px;">
+      【1日目 9/21(月・祝)】海底冒険＆マリンタウン
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">09:37 ➡ 10:43</div>
+      <div class="step-title">特急 踊り子1号で大船から伊東へ</div>
+      <div class="step-desc">左側A/B席から海を満喫。</div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">10:55 ➡ 11:05</div>
+      <div class="step-title">送迎バスでサンハトヤへ荷物先預け</div>
+      <div class="step-desc">スーツケースを預けて身軽に！</div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">11:20〜13:40</div>
+      <div class="step-title">道の駅 マリンタウン（昼食＆遊覧船）</div>
+      <div class="step-desc">海鮮丼ランチ＆海中展望船ゆーみんフック！</div>
+      <div class="step-child">👦 船底ガラス窓から海中のお魚観察＆カモメのエサやり！</div>
+    </div>
+    <div class="timeline-step" style="border-color:#16a34a;">
+      <div class="step-time">14:10〜17:00</div>
+      <div class="step-title">サンハトヤ 古代ビーチ＆海底温泉（無料）</div>
+      <div class="step-desc">水着プールで泳ぎ、巨大水槽のお魚風呂へ！18時〜夕食バイキング。</div>
+      <div class="step-child">👦 水族館の中に入ってお風呂に入るような大水槽！</div>
+    </div>
+
+    <!-- 2日目 -->
+    <div style="font-weight:800; font-size:13px; color:#16a34a; margin:16px 0 8px;">
+      【2日目 9/22(火・祝)】伊豆ぐらんぱる公園を遊び尽くす！
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">10:00 ➡ 10:55</div>
+      <div class="step-title">サンハトヤ発 ➡ 伊豆高原駅へ移動</div>
+      <div class="step-desc">伊豆急行（約20分）。駅ロッカーに荷物預け。</div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">11:15〜15:45</div>
+      <div class="step-title">伊豆ぐらんぱる公園（昼食＆大満喫）</div>
+      <div class="step-desc">約4.5時間たっぷり滞在！ジップライン・海賊船立体迷路・恐竜カート！</div>
+      <div class="step-child">👦 往復400mのジップライン空中滑空＆立体迷路で大興奮！</div>
+    </div>
+    <div class="timeline-step" style="border-color:#16a34a;">
+      <div class="step-time">16:30〜</div>
+      <div class="step-title">杜の湯 きらの里 チェックイン</div>
+      <div class="step-desc">里山昔遊び、無料焼き芋、3つの貸切風呂、里山会席、夜鳴きそば！</div>
+      <div class="step-child">👦 焼き芋・夜鳴きそば・湯上りアイスと無料のお楽しみ満載！</div>
+    </div>
+
+    <!-- 3日目 -->
+    <div style="font-weight:800; font-size:13px; color:#ea580c; margin:16px 0 8px;">
+      【3日目 9/23(水・祝)】橋立つり橋探検＆伊豆高原から直通帰着
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">07:30〜10:30</div>
+      <div class="step-title">朝風呂・無料ヤクルト＆里山朝食</div>
+      <div class="step-desc">小川散策や足湯。10:30チェックアウト。</div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">11:00〜13:30</div>
+      <div class="step-title">橋立つり橋＆対島滝・大淀小淀探検</div>
+      <div class="step-desc">長さ60m高さ18mの雄大な吊橋！海に注ぐ幻の滝＆天然プールで磯遊び！</div>
+      <div class="step-child">👦 渓谷に架かる大吊り橋と大淀小淀で探検隊気分！</div>
+    </div>
+    <div class="timeline-step">
+      <div class="step-time">13:45〜15:55</div>
+      <div class="step-title">伊豆高原駅前 やまもプラザで昼食＆お土産・カフェ</div>
+      <div class="step-desc">金目鯛ランチ、干物・お菓子のお買い物＆カフェ休憩。</div>
+    </div>
+    <div class="timeline-step" style="margin-bottom:0; border-color:#0284c7;">
+      <div class="step-time">16:09 ➡ 17:44</div>
+      <div class="step-title">特急 踊り子62号（伊豆高原発・直通）で大船へ帰着</div>
+      <div class="step-desc">
+        <strong>予約: E80864（7号車 16A・16B・15A席）</strong><br>
+        伊東へ戻る無駄ゼロ！伊豆高原から乗り換えなしで快適帰着！
+      </div>
+    </div>
+  </div>
+
+  <!-- ボトム固定バー -->
+  <div class="bottom-fix">
+    <button class="btn-fix" style="background:#06c755; color:#fff;" onclick="shareToLine()">
+      💬 LINEで送る
+    </button>
+    <button class="btn-fix" style="background:#0284c7; color:#fff;" onclick="copyFullText()">
+      📋 全文コピー
+    </button>
+  </div>
+
+  <!-- トースト -->
+  <div class="toast" id="toast">コピーしました</div>
+
+  <script>
+    const lineMessage = `🌟 2026 伊豆シルバーウィーク 家族旅行 黄金プラン 🌟
+日程: 2026/9/21(月・祝)〜9/23(水・祝) 2泊3日
+人数: 家族3名（大人2名・10歳児1名）
+
+🚆【行き 9/21(月・祝)】
+特急 踊り子1号（指定席）
+大船 09:37発 ➡ 伊東 10:43着
+
+🏨【1泊目 9/21〜22】
+ホテルサンハトヤ（伊東温泉）
+TEL: 0557-36-4126 / 予約: K26082305157
+★宿泊者無料の古代ビーチプール＆海底温泉お魚風呂！
+★道の駅マリンタウンの海中展望船
+MAP: https://maps.google.com/?q=ホテルサンハトヤ
+
+🎡【2日目 9/22(火・祝)】
+・伊豆ぐらんぱる公園（1日遊び尽くす！ジップライン＆海賊船立体迷路・恐竜ゴーカート！）
+
+🏨【2泊目 9/22〜23】
+杜の湯 きらの里（伊豆高原）
+TEL: 0557-55-2400 / 予約: 2026082338603387
+★里山昔遊び・無料焼き芋・3つの貸切風呂・夜鳴きそば
+MAP: https://maps.google.com/?q=杜の湯+きらの里
+
+🌉【3日目 9/23(水・祝)】
+・橋立つり橋（長さ60m高さ18mの雄大な吊橋＆大淀小淀の磯遊び探検）
+・伊豆高原駅前 やまもプラザでランチ＆お土産
+
+🚆【帰り 9/23(水・祝) ★予約確定済】
+特急 踊り子62号（直通指定席）
+伊豆高原 16:09発 ➡ 大船 17:44着
+予約番号: E80864（7号車 16番A・16番B・15番A席）`;
+
+    function shareToLine() {
+      const url = `https://line.me/R/msg/text/?${encodeURIComponent(lineMessage)}`;
+      window.open(url, '_blank');
+    }
+    function copyFullText() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(lineMessage).then(() => showToast('旅程メッセージをコピーしました！'));
+      }
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+  </script>
+</body>
+</html>

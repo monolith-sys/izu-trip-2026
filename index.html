@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>伊豆家族旅行 旅の栞 2026（2日目ぐらんぱる公園・3日目橋立つり橋＆伊豆高原発踊り子62号）</title>
+  <meta name="description" content="2026年シルバーウィーク 伊豆2泊3日家族旅行の旅の栞。2日目伊豆ぐらんぱる公園、3日目橋立つり橋、復路伊豆高原発特急踊り子62号(16:09発 予約E80864)、サンハトヤ、杜の湯きらの里">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Leaflet Map CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <style>
+    :root {
+      --primary: #0288d1;
+      --primary-dark: #01579b;
+      --primary-light: #e1f5fe;
+      --nature-green: #2e7d32;
+      --nature-light: #e8f5e9;
+      --sunset-orange: #ea580c;
+      --sunset-light: #fff7ed;
+      --purple: #7e22ce;
+      --purple-light: #f3e8ff;
+      --line-green: #06c755;
+      --bg-color: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 90px;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(2, 136, 209, 0.07) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(46, 125, 50, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    .hero-header {
+      position: relative;
+      background: linear-gradient(135deg, #0d47a1 0%, #0288d1 55%, #00897b 100%);
+      color: white;
+      padding: 36px 20px 28px;
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+      box-shadow: 0 12px 32px rgba(13, 71, 161, 0.22);
+      overflow: hidden;
+    }
+
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .badge-sw {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      opacity: 0.95;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .share-actions-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .btn-line-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--line-green);
+      color: white;
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-ai-overview {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #0288d1 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 6s ease infinite;
+      color: white;
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-ai-overview:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 24px rgba(124, 58, 237, 0.6);
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+      transition: var(--transition);
+    }
+
+    .btn-line-share:hover { transform: translateY(-1px); }
+
+    .btn-header-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-header-sub:hover { background: rgba(255, 255, 255, 0.32); }
+
+    .btn-deals-link {
+      background: #fef08a;
+      color: #854d0e;
+      border: 1px solid #fde047;
+      font-weight: 800;
+    }
+
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-md);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .countdown-label { font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .countdown-timer { display: flex; gap: 8px; font-family: 'Outfit', sans-serif; }
+    .time-unit { background: rgba(0, 0, 0, 0.3); padding: 4px 8px; border-radius: 6px; min-width: 44px; text-align: center; }
+    .time-num { font-size: 1.15rem; font-weight: 800; display: block; line-height: 1; }
+    .time-txt { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; }
+
+    .container {
+      max-width: 1000px;
+      margin: -15px auto 0;
+      padding: 0 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tab-nav {
+      display: flex;
+      gap: 8px;
+      background: var(--surface);
+      padding: 6px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      scrollbar-width: none;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 11px 14px;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text-sub);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--primary); background: rgba(2, 136, 209, 0.06); }
+    .tab-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(2, 136, 209, 0.28);
+    }
+
+    .section-block {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 地図 */
+    .map-container-box {
+      height: 440px;
+      width: 100%;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-color);
+      overflow: hidden;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .map-route-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .legend-item {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+    }
+
+    .legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+    .legend-dot.d1 { background: #0288d1; }
+    .legend-dot.d2 { background: #16a34a; }
+    .legend-dot.d3 { background: #ea580c; }
+
+    .rationale-card {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .rationale-title {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #166534;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rationale-list {
+      font-size: 0.84rem;
+      color: #14532d;
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* タイムライン */
+    .timeline-container { position: relative; padding-left: 20px; }
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 12px;
+      bottom: 12px;
+      width: 3px;
+      background: linear-gradient(to bottom, #0288d1, #2e7d32, #ea580c);
+      border-radius: 3px;
+    }
+
+    .timeline-day { margin-bottom: 32px; position: relative; }
+    .timeline-day:last-child { margin-bottom: 0; }
+    .day-marker { position: relative; margin-bottom: 16px; }
+    .day-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e293b;
+      color: white;
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .day-date { font-size: 0.88rem; color: var(--text-sub); margin-left: 8px; font-weight: 700; }
+
+    .timeline-item {
+      position: relative;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      margin-left: 12px;
+      transition: var(--transition);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 18px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--ocean-blue);
+      box-shadow: 0 0 0 2px rgba(2, 136, 209, 0.2);
+    }
+    .timeline-item.green-dot::before {
+      border-color: var(--nature-green);
+      box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+    }
+    .timeline-item.orange-dot::before {
+      border-color: var(--sunset-orange);
+      box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.2);
+    }
+    .timeline-item:hover {
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+      transform: translateX(3px);
+    }
+
+    .item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .item-time {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .item-tag { font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+    .tag-train { background: #e0f2fe; color: #0369a1; }
+    .tag-hotel { background: #dcfce7; color: #15803d; }
+    .tag-spot { background: #ffedd5; color: #c2410c; }
+    .tag-shuttle { background: #fef9c3; color: #854d0e; }
+
+    .item-title { font-weight: 800; font-size: 1rem; margin-bottom: 4px; color: var(--text-main); }
+    .item-desc { font-size: 0.85rem; color: var(--text-sub); }
+    .child-box {
+      background: #fffbeb;
+      border-left: 3px solid #f59e0b;
+      padding: 6px 10px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.8rem;
+      color: #92400e;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .item-map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      margin-top: 6px;
+    }
+
+    .spot-photo-banner {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      margin: 8px 0 10px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .spot-photo-banner:hover {
+      transform: scale(1.015);
+    }
+
+    .hotel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 768px) { .hotel-grid { grid-template-columns: 1fr; } }
+    .hotel-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .hotel-head-bar {
+      padding: 12px 16px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .hotel-body-box { padding: 16px; font-size: 0.85rem; display: flex; flex-direction: column; gap: 8px; }
+    .res-badge { background: #f1f5f9; padding: 6px 10px; border-radius: 6px; font-family: monospace; font-weight: 700; }
+
+    .btn-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+      text-align: center;
+    }
+    .btn-tel { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .btn-map { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-color);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+    }
+    .btn-bar-action {
+      padding: 9px 16px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: white;
+      color: var(--text-main);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .btn-bar-action:hover { background: #f1f5f9; transform: translateY(-1px); }
+    .btn-bar-line { background: var(--line-green); color: white; border-color: var(--line-green); }
+    .btn-bar-primary { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* AI Overview Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      overflow-y: auto;
+      color: #f8fafc;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      transform: scale(0.94);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(30, 41, 59, 0.6);
+    }
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-modal-close {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #94a3b8;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    .btn-modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+    .modal-body {
+      padding: 24px;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+    }
+    .video-container video {
+      width: 100%;
+      display: block;
+      max-height: 460px;
+    }
+    .chapter-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .chapter-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .chapter-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    .podcast-hosts-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.4);
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    @media (max-width: 600px) {
+      .podcast-hosts-info { grid-template-columns: 1fr; }
+    }
+    .host-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+    .host-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 75px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ヒーローヘッダー -->
+  <header class="hero-header">
+    <div class="hero-content">
+      <div class="header-top">
+        <div class="badge-sw">
+          <i class="fa-solid fa-plane-departure"></i> 2026 SILVER WEEK
+        </div>
+        <a href="deals.html" class="btn-header-sub btn-deals-link">
+          <i class="fa-solid fa-tags"></i> 割引・優待ハックまとめを見る ➡
+        </a>
+      </div>
+
+      <h1 class="hero-title">伊豆 家族旅行 旅の栞</h1>
+      <div class="hero-subtitle">
+        <span><i class="fa-regular fa-calendar-days"></i> 2026年9月21日(月・祝) 〜 9月23日(水・祝) 2泊3日</span>
+        <span><i class="fa-solid fa-users"></i> ご家族3名（大人2名・10歳のお子様1名）</span>
+        <span><i class="fa-solid fa-train"></i> 復路：伊豆高原 16:09発 踊り子62号（直通）</span>
+      </div>
+
+      <!-- LINE共有バー & AI対談ボタン -->
+      <div class="share-actions-bar">
+        <button class="btn-ai-overview" onclick="openAudioModal()">
+          <i class="fa-solid fa-headphones-simple"></i> 🎙️ AI対談で聴く (NotebookLM風解説)
+        </button>
+        <button class="btn-line-share" onclick="shareToLine()">
+          <i class="fa-brands fa-line" style="font-size:1.1rem;"></i> LINEで共有
+        </button>
+        <button class="btn-header-sub" onclick="copyLineText()">
+          <i class="fa-regular fa-copy"></i> テキストコピー
+        </button>
+        <button class="btn-header-sub" onclick="window.print()">
+          <i class="fa-solid fa-print"></i> 印刷 / PDF
+        </button>
+      </div>
+
+      <!-- カウントダウン -->
+      <div class="countdown-box">
+        <div class="countdown-label">
+          <i class="fa-solid fa-stopwatch"></i> 出発（9/21 09:37 大船駅）まで
+        </div>
+        <div class="countdown-timer" id="countdown">
+          <div class="time-unit"><span class="time-num" id="cd-days">--</span><span class="time-txt">Days</span></div>
+          <div class="time-unit"><span class="time-num" id="cd-hours">--</span><span class="time-txt">Hours</span></div>
+          <div class="time-unit"><span class="time-num" id="cd-mins">--</span><span class="time-txt">Mins</span></div>
+          <div class="time-unit"><span class="time-num" id="cd-secs">--</span><span class="time-txt">Secs</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- メインコンテナ -->
+  <main class="container">
+
+    <!-- ナビゲーションタブ -->
+    <nav class="tab-nav" role="tablist">
+      <button class="tab-btn active" onclick="switchTab('timeline-section')">
+        <i class="fa-solid fa-clock"></i> 2泊3日 詳細タイムスケジュール
+      </button>
+      <button class="tab-btn" onclick="switchTab('map-section')">
+        <i class="fa-solid fa-map-location-dot"></i> 全体位置関係MAP
+      </button>
+      <button class="tab-btn" onclick="switchTab('transport-section')">
+        <i class="fa-solid fa-train"></i> 特急 踊り子（指定席・座席）
+      </button>
+      <button class="tab-btn" onclick="switchTab('hotels-section')">
+        <i class="fa-solid fa-bed"></i> 宿泊予約詳細
+      </button>
+      <button class="tab-btn" onclick="switchTab('checklist-section')">
+        <i class="fa-solid fa-clipboard-check"></i> 持ち物チェック
+      </button>
+    </nav>
+
+    <!-- TAB 1: 2泊3日 詳細タイムテーブル（最新確定版：伊豆高原16:09発 踊り子62号） -->
+    <section id="tab-timeline-section" class="tab-pane">
+      <div class="section-block">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-clock-rotate-left" style="color:var(--ocean-blue);"></i> 2泊3日 詳細タイムテーブル（分刻み確定版）
+          </h2>
+          <span style="font-size:0.8rem; color:#16a34a; font-weight:800; background:#dcfce7; padding:4px 10px; border-radius:20px;">
+            <i class="fa-solid fa-check"></i> 復路 特急踊り子62号 予約変更反映済（予約: E80864）
+          </span>
+        </div>
+
+        <div class="timeline-container">
+          
+          <!-- 1日目 -->
+          <div class="timeline-day">
+            <div class="day-marker">
+              <span class="day-badge"><i class="fa-solid fa-calendar-day"></i> DAY 1</span>
+              <span class="day-date">2026年9月21日（月・祝）テーマ：海の伊東・ハトヤ海底冒険 ＆ マリンタウン</span>
+            </div>
+
+            <div class="timeline-item">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-train"></i> 09:37 ➡ 10:43</span>
+                <span class="item-tag tag-train">特急 踊り子1号（指定席）</span>
+              </div>
+              <div class="item-title">大船駅 出発 ➡ 伊東駅 到着</div>
+              <div class="item-desc">
+                進行方向左側（A/B席）から相模湾の海と熱海・伊豆の海岸線を眺めながらワクワクのスタート！
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-bus"></i> 10:55 ➡ 11:05</span>
+                <span class="item-tag tag-shuttle">無料送迎バス（約5分）</span>
+              </div>
+              <div class="item-title">伊東駅からサンハトヤへ荷物を先預け</div>
+              <div class="item-desc">
+                改札を出て右側の土産物屋前付近から無料送迎バスに乗車。サンハトヤのフロントでチェックイン手続きを行い、重いスーツケースを預けて身軽に行動開始！
+              </div>
+            </div>
+
+            <div class="timeline-item orange-dot">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-utensils"></i> 11:20〜12:30</span>
+                <span class="item-tag tag-spot">昼食（海鮮ランチ）</span>
+              </div>
+              <div class="item-title">道の駅 伊東マリンタウンでランチ</div>
+              <div class="item-desc">
+                サンハトヤから徒歩10分（または車3分）。レストラン通りで新鮮な海鮮丼、アジフライ定食、金目鯛など伊豆の海の幸を堪能。
+              </div>
+              <a href="https://maps.google.com/?q=道の駅+伊東マリンタウン" target="_blank" class="item-map-link">🗺️ マリンタウン MAP</a>
+            </div>
+
+            <div class="timeline-item orange-dot">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-ship"></i> 12:40〜13:40</span>
+                <span class="item-tag tag-spot">海中展望船ゆーみんフック</span>
+              </div>
+              <div class="item-title">海底が見える遊覧船 ＆ 足湯体験</div>
+              <div class="item-desc">
+                船底のガラス展望室から海の中を泳ぐ魚たちを観察！カモメのエサやり体験 ＆ 名物のカラフルな足湯（あったまりーな）でリフレッシュ。
+              </div>
+              <div class="child-box">👦 10歳ポイント：船底のガラス窓から海中のお魚観察＆カモメが手元まで飛んでくる！</div>
+            </div>
+
+            <div class="timeline-item green-dot">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-water-ladder"></i> 14:10〜17:00</span>
+                <span class="item-tag tag-hotel">宿泊者無料特典</span>
+              </div>
+              <div class="item-title">サンハトヤ「古代ビーチ（プール）」＆「海底温泉お魚風呂」</div>
+              <img src="assets/images/spot_sunhatoya.jpg" alt="サンハトヤ 海底温泉" class="spot-photo-banner" loading="lazy">
+              <div class="item-desc">
+                15:00の部屋入室前から宿泊者無料で利用可能！屋内水着ゾーン「古代ビーチ」で泳いだ後、名物の「海底温泉お魚風呂」へ。巨大水槽で優雅に泳ぐウミガメや魚たちを眺めながら温泉入浴。
+              </div>
+              <div class="child-box">👦 10歳ポイント：水族館の大水槽の中に入ってお風呂に入っているような大迫力体験！</div>
+              <a href="https://maps.google.com/?q=ホテルサンハトヤ" target="_blank" class="item-map-link">🗺️ サンハトヤ MAP</a>
+            </div>
+
+            <div class="timeline-item green-dot">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-utensils"></i> 18:00〜</span>
+                <span class="item-tag tag-hotel">夕食バイキング＆宿泊</span>
+              </div>
+              <div class="item-title">夏のakaakaチャリティディナーバイキング</div>
+              <div class="item-desc">
+                お刺身、天ぷら、ステーキ、キッズ向けデザートなど好きなものを好きなだけ楽しむディナーバイキング。夜の海を望む和室でゆったり宿泊。
+              </div>
+            </div>
+          </div>
+
+          <!-- 2日目 -->
+          <div class="timeline-day">
+            <div class="day-marker">
+              <span class="day-badge"><i class="fa-solid fa-calendar-day"></i> DAY 2</span>
+              <span class="day-date">2026年9月22日（火・国民の休日）テーマ：伊豆ぐらんぱる公園を1日遊び尽くす ＆ きらの里</span>
+            </div>
+
+            <div class="timeline-item">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-train"></i> 09:30 ➡ 10:55</span>
+                <span class="item-tag tag-shuttle">チェックアウト＆伊豆高原へ移動</span>
+              </div>
+              <div class="item-title">サンハトヤ発 ➡ 伊東駅 ➡ 伊豆急行で伊豆高原駅へ（約20分）</div>
+              <div class="item-desc">
+                朝食バイキング後、10:00にチェックアウト。送迎バスで伊東駅へ戻り、伊豆急行線で伊豆高原駅へ。駅構内のコインロッカーにスーツケースを預けます。
+              </div>
+            </div>
+
+            <div class="timeline-item orange-dot">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-gamepad"></i> 11:15〜15:45</span>
+                <span class="item-tag tag-spot">伊豆ぐらんぱる公園（丸ごと満喫）</span>
+              </div>
+              <div class="item-title">伊豆ぐらんぱる公園（昼食 ＆ 大興奮アトラクション）</div>
+              <img src="assets/images/spot_granpal.jpg" alt="伊豆ぐらんぱる公園 恐竜エリア＆ジップライン" class="spot-photo-banner" loading="lazy">
+              <div class="item-desc">
+                伊豆高原駅からバスまたはタクシー約10分。午前中からたっぷり約4.5時間滞在！
+                <br>・園内レストラン「グリルスノーパラダイス」や海賊カフェでランチ
+                <br><strong>★ジップライン〜風KAZE〜：</strong>往復400mの空を滑空！（鳥になった気分の大空中飛行）
+                <br><strong>★船型立体迷路〜KAiZOKU〜：</strong>巨大木造船の立体迷路でスタンプ集め！
+                <br><strong>★ディノエイジカート：</strong>実物大の動く恐竜エリアを駆け抜けるゴーカート！
+                <br><strong>★ウォーターバルーン / バトルレーザー</strong>など人気アトラクション
+                <br><strong>★無料エリア：</strong>110m見晴らしローラースライダー、ボルダリング、巨大アスレチック広場
+              </div>
+              <div class="child-box">👦 10歳ポイント：時間を気にせずジップライン・海賊船立体迷路・恐竜カート・ロングスライダーを全制覇！</div>
+              <a href="https://maps.google.com/?q=伊豆ぐらんぱる公園" target="_blank" class="item-map-link">🗺️ ぐらんぱる公園 MAP</a>
+            </div>
+
+            <div class="timeline-item green-dot">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-hotel"></i> 16:30〜</span>
+                <span class="item-tag tag-hotel">きらの里 チェックイン</span>
+              </div>
+              <div class="item-title">杜の湯 きらの里 チェックイン ＆ 里山体験</div>
+              <img src="assets/images/spot_kiranosato.jpg" alt="杜の湯 きらの里 露天風呂" class="spot-photo-banner" loading="lazy">
+              <div class="item-desc">
+                伊豆高原駅で荷物をピックアップし、南口から無料送迎バス（約7分）できらの里へ。
+                <br>・水車小屋や田畑が広がる里山をお散歩
+                <br>・帳場前で昔遊び（竹馬、輪投げ、コマ回しなど親子対決！）
+                <br>・里山小屋で夕方の<strong>【無料焼き芋】</strong>をパクリ！
+                <br>・予約不要で何度でも入れる<strong>【3つの無料貸切風呂（岩座・竹座・石座）】</strong>めぐり
+                <br>・18:30〜 旬の贅沢「里山会席」ディナー
+                <br>・20:30〜 大浴場「杜の湯」の露天風呂 ＆ <strong>無料湯上りアイス</strong>
+                <br>・22:00〜 共立リゾート名物<strong>【無料の夜鳴きそば】</strong>（あっさり醤油ラーメン）！
+              </div>
+              <div class="child-box">👦 10歳ポイント：焼き芋・貸切風呂・夜鳴きそば・湯上りアイスと無料のお楽しみがいっぱい！</div>
+              <a href="https://maps.google.com/?q=杜の湯+きらの里" target="_blank" class="item-map-link">🗺️ きらの里 MAP</a>
+            </div>
+          </div>
+
+          <!-- 3日目 -->
+          <div class="timeline-day">
+            <div class="day-marker">
+              <span class="day-badge"><i class="fa-solid fa-calendar-day"></i> DAY 3</span>
+              <span class="day-date">2026年9月23日（水・祝）テーマ：橋立つり橋・大淀小淀アドベンチャー ＆ 伊豆高原駅から特急踊り子62号で直通帰着</span>
+            </div>
+
+            <div class="timeline-item">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-mug-hot"></i> 07:30〜10:30</span>
+                <span class="item-tag tag-hotel">里山の朝・チェックアウト</span>
+              </div>
+              <div class="item-title">朝風呂・無料ヤクルト ＆ 里山朝食</div>
+              <div class="item-desc">
+                朝の温泉入浴（湯上り処で無料ヤクルト）。美味しい里山朝食を食べた後、小川で生き物観察や足湯。10:30にチェックアウトし、送迎バスで伊豆高原駅へ（駅ロッカーに荷物預け）。
+              </div>
+            </div>
+
+            <div class="timeline-item orange-dot">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-bridge"></i> 11:00〜13:30</span>
+                <span class="item-tag tag-spot">橋立つり橋＆対島滝・大淀小淀</span>
+              </div>
+              <div class="item-title">橋立つり橋 ＆ 秘境アドベンチャー探検</div>
+              <img src="assets/images/spot_tsuribashi.jpg" alt="城ヶ崎海岸 橋立つり橋" class="spot-photo-banner" loading="lazy">
+              <div class="item-desc">
+                伊豆高原駅（やまも口）から車約5分（または徒歩約20分）。
+                <br>・<strong>長さ60m・高さ18mの雄大な「橋立つり橋」</strong>を渡る！足元に広がる美しい渓谷と波しぶき！
+                <br>・海に直接注ぎ込む幻の滝「対島（たじま）の滝」展望
+                <br>・天然の潮だまり「大淀・小淀（おおよど・こよど）」で磯遊び・海の生き物観察！
+              </div>
+              <div class="child-box">👦 10歳ポイント：自然豊かな渓谷にかかる大吊り橋と、天然プールのような大淀小淀で探検隊気分！</div>
+              <a href="https://maps.google.com/?q=橋立つり橋" target="_blank" class="item-map-link">🗺️ 橋立つり橋 MAP</a>
+            </div>
+
+            <div class="timeline-item">
+              <div class="item-header">
+                <span class="item-time"><i class="fa-solid fa-bag-shopping"></i> 13:45〜15:55</span>
+                <span class="item-tag tag-spot">伊豆高原駅前 やまもプラザ</span>
+              </div>
+              <div class="item-title">伊豆高原駅前でゆったりランチ ＆ お土産ショッピング・カフェ</div>
+              <div class="item-desc">
+                16:09発なので時間にたっぷり余裕あり！駅構内・やまもプラザのレストランで金目鯛ランチやそば、カフェ休憩。駅前のお土産店で特産の干物、銘茶、スイーツを購入。ロッカーの荷物をピックアップして改札へ。
+              </div>
+            </div>
+
+            <div class="timeline-item" style="border: 2px solid #0288d1; background:#f0f9ff;">
+              <div class="item-header">
+                <span class="item-time" style="color:#0288d1; font-size:1.05rem;">
+                  <i class="fa-solid fa-train"></i> 16:09 ➡ 17:44
+                </span>
+                <span class="item-tag tag-train" style="background:#0288d1; color:white;">特急 踊り子（伊東編成）62号</span>
+              </div>
+              <div class="item-title" style="color:#01579b;">伊豆高原駅 乗車 ➡ 大船駅 帰着（乗り換えなし直通！）</div>
+              <img src="assets/images/spot_odoriko.jpg" alt="特急踊り子号" class="spot-photo-banner" loading="lazy">
+              <div class="item-desc">
+                <strong>【予約確定済】予約番号: E80864</strong>
+                <br><strong>【座席】7号車 16番A席、16番B席、15番A席</strong>（指定席・チケットレス）
+                <br>伊東へ戻る無駄な移動がゼロ！伊豆高原駅から大船駅まで座ったままゆったり快適直通！
+                <br>17:44大船着（※乗車券は東戸塚17:59まで）。夕方の早い帰着で翌日への疲れを残しません！
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 全体位置関係マップ -->
+    <section id="tab-map-section" class="tab-pane" style="display:none;">
+      <div class="section-block">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-map-location-dot" style="color:var(--ocean-blue);"></i> 伊東・伊豆高原 全体ルート＆位置関係マップ
+          </h2>
+          <span style="font-size:0.8rem; color:var(--text-sub); font-weight:700;">
+            ピンをタップすると詳細が表示されます
+          </span>
+        </div>
+
+        <div id="izu-map" class="map-container-box"></div>
+
+        <div class="map-route-legend">
+          <div class="legend-item">
+            <span class="legend-dot d1"></span>
+            <div><strong>1日目（伊東エリア）</strong><br><small>伊東駅 ➡ マリンタウン ➡ サンハトヤ</small></div>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot d2"></span>
+            <div><strong>2日目（伊豆高原エリア）</strong><br><small>伊豆高原駅 ➡ ぐらんぱる公園 ➡ きらの里</small></div>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot d3"></span>
+            <div><strong>3日目（八幡野・伊豆高原発）</strong><br><small>きらの里 ➡ 橋立つり橋 ➡ 伊豆高原駅発（16:09発）</small></div>
+          </div>
+        </div>
+
+        <div class="rationale-card">
+          <div class="rationale-title">
+            <i class="fa-solid fa-compass"></i> なぜ「3日目橋立つり橋 ＆ 伊豆高原駅発（踊り子62号）」が完璧なのか？
+          </div>
+          <ul class="rationale-list">
+            <li><strong>① 3日目の移動が「八幡野・伊豆高原エリア」だけで完結：</strong> きらの里・橋立つり橋・伊豆高原駅はすべて同じ「八幡野」エリア（車5分圏内）。移動時間がほぼゼロになり、観光とお土産に時間をたっぷり使えます。</li>
+            <li><strong>② わざわざ伊東駅まで戻る無駄がゼロ：</strong> 「特急 踊り子62号」は伊豆高原駅（16:09発）から発車するため、伊豆高原駅から大船駅まで乗り換えなしで直通帰宅できます。</li>
+            <li><strong>③ 2日目に「ぐらんぱる公園」を時間を気にせず遊び尽くせる：</strong> 朝から夕方前までたっぷり約4.5時間滞在でき、ジップライン・立体迷路・恐竜カートを余裕で制覇！</li>
+            <li><strong>④ 橋立つり橋の大自然・アドベンチャー感：</strong> 門脇吊橋よりも自然豊かで、対島滝や天然プール「大淀小淀」があり、10歳のお子様がワクワクする探検体験ができます。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 特急 踊り子（座席・予約詳細） -->
+    <section id="tab-transport-section" class="tab-pane" style="display:none;">
+      <div class="section-block">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fa-solid fa-train"></i> 特急 踊り子号 チケット・座席詳細</h2>
+          <span style="font-size:0.8rem; color:#16a34a; font-weight:800; background:#dcfce7; padding:4px 10px; border-radius:20px;">
+            えきねっと予約確定済
+          </span>
+        </div>
+
+        <!-- 往路 -->
+        <div style="background:#f0f9ff; padding:18px; border-radius:14px; border:1px solid #bae6fd; margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <strong style="color:#0288d1; font-size:1.1rem;">【往路】2026年9月21日（月・祝）特急 踊り子1号</strong>
+            <span style="background:#e0f2fe; color:#0369a1; padding:3px 10px; border-radius:6px; font-weight:700; font-size:0.8rem;">指定席 3名</span>
+          </div>
+          <div style="font-size:1.3rem; font-weight:800; margin:10px 0; color:#0f172a;">
+            大船駅（09:37発） ➡ 伊東駅（10:43着）
+          </div>
+          <div style="font-size:0.88rem; color:var(--text-sub);">
+            人数：おとな2人、こども1人 ／ えきねっと予約済（海側座席）
+          </div>
+        </div>
+
+        <!-- 復路（新確定情報） -->
+        <div style="background:#f0fdf4; padding:18px; border-radius:14px; border:1.5px solid #86efac; margin-bottom:12px; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <strong style="color:#16a34a; font-size:1.1rem;">【復路 確定】2026年9月23日（水・祝）特急 踊り子62号</strong>
+            <span style="background:#dcfce7; color:#15803d; padding:3px 10px; border-radius:6px; font-weight:800; font-size:0.82rem;">チケットレス特急券</span>
+          </div>
+          <div style="font-size:1.35rem; font-weight:800; margin:10px 0; color:#0f172a;">
+            伊豆高原駅（16:09発） ➡ 大船駅（17:44着）
+          </div>
+          <div style="background:white; padding:14px; border-radius:10px; border:1px solid #bbf7d0; margin-top:8px; display:flex; flex-direction:column; gap:6px; font-size:0.88rem;">
+            <div>📌 <strong>予約番号：</strong> <span class="res-badge" style="background:#dcfce7; color:#166534; font-size:1rem;">E80864</span></div>
+            <div>💺 <strong>確定座席：</strong> <span style="font-weight:800; color:#0f172a;">7号車 16番A席、16番B席、15番A席</span>（前後・隣同士で家族でまとまって座れる良い席配置！）</div>
+            <div>🎫 <strong>区間：</strong> 伊豆高原 ➡ 東戸塚（17:59着）※大船にて下車可能</div>
+            <div>💰 <strong>特急料金：</strong> 4,300円（おとな3,440円、こども860円）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: 宿泊予約詳細 -->
+    <section id="tab-hotels-section" class="tab-pane" style="display:none;">
+      <div class="section-block">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fa-solid fa-bed"></i> 宿泊予約情報</h2>
+        </div>
+
+        <div class="hotel-grid">
+          <!-- 1泊目：サンハトヤ -->
+          <div class="hotel-card">
+            <div class="hotel-head-bar" style="background:linear-gradient(135deg, #0288d1, #0097a7);">
+              <span>1泊目（9/21〜9/22）</span>
+              <span>夕朝食付</span>
+            </div>
+            <div class="hotel-body-box">
+              <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a;">ホテルサンハトヤ</h3>
+              <div style="color:var(--text-sub); font-size:0.8rem;">〒414-0002 静岡県伊東市湯川572-12</div>
+              <div>予約番号: <span class="res-badge">K26082305157</span></div>
+              <div>手配元: 日本旅行（Webコレクションプラス）</div>
+              <div>部屋: 3名（大人2・子1）／【禁煙】和室</div>
+              <div>プラン: 夏のakaakaチャリティプラン（夕朝食付）</div>
+              <div>IN / OUT: 15:00 / 10:00</div>
+              <div>送迎: JR伊東駅より無料送迎バス約5分（12:30〜30分間隔／予約不要）</div>
+              <div>支払: <strong style="color:#0288d1;">55,700円</strong>（事前クレカ決済済）</div>
+              <div style="display:flex; gap:8px; margin-top:8px;">
+                <a href="tel:0557364126" class="btn-action btn-tel" style="flex:1;">📞 0557-36-4126</a>
+                <a href="https://maps.google.com/?q=ホテルサンハトヤ" target="_blank" class="btn-action btn-map" style="flex:1;">🗺️ Google MAP</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2泊目：きらの里 -->
+          <div class="hotel-card">
+            <div class="hotel-head-bar" style="background:linear-gradient(135deg, #2e7d32, #1b5e20);">
+              <span>2泊目（9/22〜9/23）</span>
+              <span>1泊2食付（株主優待）</span>
+            </div>
+            <div class="hotel-body-box">
+              <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a;">杜の湯 きらの里</h3>
+              <div style="color:var(--text-sub); font-size:0.8rem;">〒413-0232 静岡県伊東市八幡野1326-5</div>
+              <div>予約番号: <span class="res-badge">2026082338603387</span></div>
+              <div>手配元: ドーミーホテルズ＆リゾーツ公式</div>
+              <div>部屋: 3名（大人2・小学生1）／【旅籠八幡野】本館和洋室</div>
+              <div>プラン: 【株主限定】リゾートホテル優待券専用（1泊2食付）</div>
+              <div>IN / OUT: 15:00 / 11:00</div>
+              <div>送迎: 伊豆高原駅南口より無料送迎バス約7分（随時運行／予約不要）</div>
+              <div>支払: <strong style="color:#2e7d32;">67,000円</strong>（現地決済：現金またはクレカ／2,000pt利用後）</div>
+              <div style="font-size:0.75rem; color:#166534; background:#f0fdf4; padding:6px; border-radius:6px;">
+                ⚠️ <strong>株主様ご優待電子チケット</strong>を事前にスマホで確認・ご提示ください。
+              </div>
+              <div style="display:flex; gap:8px; margin-top:8px;">
+                <a href="tel:0557552400" class="btn-action btn-tel" style="flex:1;">📞 0557-55-2400</a>
+                <a href="https://maps.google.com/?q=杜の湯+きらの里" target="_blank" class="btn-action btn-map" style="flex:1;">🗺️ Google MAP</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: 持ち物チェック -->
+    <section id="tab-checklist-section" class="tab-pane" style="display:none;">
+      <div class="section-block">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fa-solid fa-clipboard-check"></i> 持ち物チェックリスト</h2>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:10px;">
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>🎟️ 踊り子号チケット（えきねっと連携IC/発券・予約E80864）</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>📄 サンハトヤ 予約確認メール控え（予約: K26082305157）</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>📱 きらの里 株主優待電子チケット画面（予約: 2026082338603387）</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>💳 現金・クレカ（きらの里現地決済 ¥67,000）</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>🪪 家族全員分の健康保険証・マイナンバー</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>🏊 水着（サンハトヤ海底温泉・古代ビーチ用）</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>👟 動きやすいスニーカー（ぐらんぱる・橋立つり橋用）</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>🔋 スマホ充電器・モバイルバッテリー</span>
+          </label>
+          <label style="background:#f8fafc; padding:10px 14px; border-radius:8px; border:1px solid #e2e8f0; display:flex; align-items:center; gap:10px; cursor:pointer;">
+            <input type="checkbox"> <span>💊 常備薬・お子様用酔い止め</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ボトム固定バー -->
+  <footer class="bottom-bar">
+    <button class="btn-bar-action btn-bar-line" onclick="shareToLine()">
+      <i class="fa-brands fa-line" style="font-size:1.1rem;"></i> LINEで送る
+    </button>
+    <a href="deals.html" class="btn-bar-action" style="background:#fef08a; color:#854d0e; border-color:#fde047;">
+      <i class="fa-solid fa-tags"></i> お得情報
+    </a>
+    <a href="tel:0557364126" class="btn-bar-action">📞 サンハトヤ</a>
+    <a href="tel:0557552400" class="btn-bar-action">📞 きらの里</a>
+  </footer>
+
+  <!-- トースト -->
+  <div id="toast" class="toast">コピーしました</div>
+
+  <script>
+    function switchTab(tabId) {
+      const tabs = ['timeline-section', 'map-section', 'transport-section', 'hotels-section', 'checklist-section'];
+      tabs.forEach(id => {
+        const pane = document.getElementById(`tab-${id}`);
+        if (pane) pane.style.display = (id === tabId) ? 'block' : 'none';
+      });
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => {
+        const onclickAttr = btn.getAttribute('onclick');
+        if (onclickAttr && onclickAttr.includes(`'${tabId}'`)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      if (tabId === 'map-section' && window.mapInstance) {
+        setTimeout(() => { window.mapInstance.invalidateSize(); }, 100);
+      }
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function initIzuMap() {
+      const map = L.map('izu-map').setView([34.9250, 139.1100], 12);
+      window.mapInstance = map;
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      const spots = [
+        { name: "🚆 JR 伊東駅 (到着駅)", lat: 34.9748, lng: 139.0988, color: "#0288d1", desc: "1日目 10:43着" },
+        { name: "🐟 道の駅 伊東マリンタウン", lat: 34.9856, lng: 139.1085, color: "#0288d1", desc: "1日目 昼食＆海中展望船ゆーみんフック" },
+        { name: "🏨 ホテルサンハトヤ（1泊目）", lat: 34.9818, lng: 139.1065, color: "#0288d1", desc: "海底温泉お魚風呂＆古代ビーチプール" },
+        { name: "🚆 伊豆急行 伊豆高原駅 (出発駅)", lat: 34.8778, lng: 139.1081, color: "#16a34a", desc: "3日目 16:09発 特急踊り子62号で直通帰着！（予約: E80864）" },
+        { name: "🎡 伊豆ぐらんぱる公園", lat: 34.8988, lng: 139.1243, color: "#16a34a", desc: "2日目 ジップライン・海賊船立体迷路・恐竜カート！" },
+        { name: "🏨 杜の湯 きらの里（2泊目）", lat: 34.8741, lng: 139.1018, color: "#16a34a", desc: "里山リゾート・無料焼き芋・3つの貸切風呂・夜鳴きそば" },
+        { name: "🌉 橋立つり橋（対島川渓谷・大淀小淀）", lat: 34.8825, lng: 139.1215, color: "#ea580c", desc: "3日目 長さ60m高さ18mの雄大な吊橋＆磯遊び探検" }
+      ];
+
+      spots.forEach(s => {
+        const marker = L.circleMarker([s.lat, s.lng], {
+          radius: 9,
+          fillColor: s.color,
+          color: "#ffffff",
+          weight: 2.5,
+          opacity: 1,
+          fillOpacity: 0.95
+        }).addTo(map);
+
+        marker.bindPopup(`
+          <div style="font-family:'Zen Kaku Gothic New', sans-serif; font-size:13px; min-width:180px;">
+            <strong style="color:${s.color}; font-size:14px;">${s.name}</strong><br>
+            <span style="color:#475569; font-size:12px;">${s.desc}</span><br>
+            <a href="https://maps.google.com/?q=${s.lat},${s.lng}" target="_blank" style="display:inline-block; margin-top:6px; color:#0288d1; font-weight:700; font-size:11px;">Google MAPで開く ➡</a>
+          </div>
+        `);
+      });
+
+      // 1日目ルート線 (青)
+      L.polyline([[34.9748, 139.0988], [34.9818, 139.1065], [34.9856, 139.1085]], { color: '#0288d1', weight: 3.5, dashArray: '6, 6' }).addTo(map);
+      // 2日目ルート線 (緑)
+      L.polyline([[34.9748, 139.0988], [34.8778, 139.1081], [34.8988, 139.1243], [34.8778, 139.1081], [34.8741, 139.1018]], { color: '#16a34a', weight: 3.5, dashArray: '6, 6' }).addTo(map);
+      // 3日目ルート線 (橙) 八幡野エリアで完結
+      L.polyline([[34.8741, 139.1018], [34.8778, 139.1081], [34.8825, 139.1215], [34.8778, 139.1081]], { color: '#ea580c', weight: 3.5, dashArray: '6, 6' }).addTo(map);
+    }
+
+    function updateCountdown() {
+      const departureDate = new Date('2026-09-21T09:37:00+09:00').getTime();
+      const now = new Date().getTime();
+      const diff = departureDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = '<span style="font-weight:700; color:#fff;">🎉 旅行中！</span>';
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('cd-days').textContent = days;
+      document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+      document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+  <!-- AI Overview Modal (NotebookLM Style) -->
+  <div class="modal-overlay" id="audioModal" onclick="closeAudioModalOnBg(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-microphone-lines" style="color:#38bdf8;"></i> 旅のしおり AI音声対談解説 (NotebookLM Style)</h3>
+        <button class="btn-modal-close" onclick="closeAudioModal()" title="閉じる">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- 動画プレイヤー -->
+        <div class="video-container">
+          <video id="overviewVideo" controls playsinline preload="metadata">
+            <source src="assets/video/izu_trip_audio_overview.mp4" type="video/mp4">
+            お使いのブラウザは動画・音声の再生に対応していません。
+          </video>
+        </div>
+
+        <!-- プレイヤー追加コントロール（再生速度など） -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:18px; padding:10px 14px; background:rgba(30,41,59,0.5); border-radius:10px; border:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:700; color:#cbd5e1;">
+            <i class="fa-solid fa-gauge-high" style="color:#38bdf8;"></i> 再生速度:
+            <button class="speed-btn active" onclick="setPlaySpeed(1.0, this)" style="background:#0288d1; color:white; border:none; padding:3px 10px; border-radius:12px; font-size:0.75rem; font-weight:700; cursor:pointer;">1.0x</button>
+            <button class="speed-btn" onclick="setPlaySpeed(1.25, this)" style="background:rgba(255,255,255,0.1); color:#cbd5e1; border:none; padding:3px 10px; border-radius:12px; font-size:0.75rem; font-weight:700; cursor:pointer;">1.25x</button>
+            <button class="speed-btn" onclick="setPlaySpeed(1.5, this)" style="background:rgba(255,255,255,0.1); color:#cbd5e1; border:none; padding:3px 10px; border-radius:12px; font-size:0.75rem; font-weight:700; cursor:pointer;">1.5x</button>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button onclick="skipVideo(-10)" style="background:rgba(255,255,255,0.1); color:white; border:none; padding:5px 12px; border-radius:14px; font-size:0.78rem; font-weight:700; cursor:pointer;">
+              <i class="fa-solid fa-rotate-left"></i> 10秒戻る
+            </button>
+            <button onclick="skipVideo(10)" style="background:rgba(255,255,255,0.1); color:white; border:none; padding:5px 12px; border-radius:14px; font-size:0.78rem; font-weight:700; cursor:pointer;">
+              10秒進む <i class="fa-solid fa-rotate-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ビジュアルチャプターナビゲーション -->
+        <div style="font-size:0.88rem; font-weight:800; color:#cbd5e1; margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+          <i class="fa-solid fa-clapperboard" style="color:#38bdf8;"></i> チャプター選択（クリックで頭出し再生）
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:10px; margin-bottom:20px;">
+          <div class="chapter-card" id="chap-0" onclick="seekVideo(0)" style="background:#1e293b; border-radius:10px; overflow:hidden; cursor:pointer; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s;">
+            <div style="height:65px; background:url('assets/images/spot_odoriko.jpg') center/cover; position:relative;">
+              <span style="position:absolute; bottom:4px; right:4px; background:rgba(0,0,0,0.7); font-size:0.68rem; padding:1px 5px; border-radius:4px; font-weight:700; color:#38bdf8;">0:00</span>
+            </div>
+            <div style="padding:6px 8px; font-size:0.75rem; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              🌟 概要・黄金ルート
+            </div>
+          </div>
+
+          <div class="chapter-card" id="chap-1" onclick="seekVideo(24)" style="background:#1e293b; border-radius:10px; overflow:hidden; cursor:pointer; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s;">
+            <div style="height:65px; background:url('assets/images/spot_sunhatoya.jpg') center/cover; position:relative;">
+              <span style="position:absolute; bottom:4px; right:4px; background:rgba(0,0,0,0.7); font-size:0.68rem; padding:1px 5px; border-radius:4px; font-weight:700; color:#00897b;">0:24</span>
+            </div>
+            <div style="padding:6px 8px; font-size:0.75rem; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              🐠 1日目: 海底温泉
+            </div>
+          </div>
+
+          <div class="chapter-card" id="chap-2" onclick="seekVideo(54)" style="background:#1e293b; border-radius:10px; overflow:hidden; cursor:pointer; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s;">
+            <div style="height:65px; background:url('assets/images/spot_granpal.jpg') center/cover; position:relative;">
+              <span style="position:absolute; bottom:4px; right:4px; background:rgba(0,0,0,0.7); font-size:0.68rem; padding:1px 5px; border-radius:4px; font-weight:700; color:#ea580c;">0:54</span>
+            </div>
+            <div style="padding:6px 8px; font-size:0.75rem; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              🦖 2日目: 恐竜＆きらの里
+            </div>
+          </div>
+
+          <div class="chapter-card" id="chap-3" onclick="seekVideo(89)" style="background:#1e293b; border-radius:10px; overflow:hidden; cursor:pointer; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s;">
+            <div style="height:65px; background:url('assets/images/spot_tsuribashi.jpg') center/cover; position:relative;">
+              <span style="position:absolute; bottom:4px; right:4px; background:rgba(0,0,0,0.7); font-size:0.68rem; padding:1px 5px; border-radius:4px; font-weight:700; color:#7e22ce;">1:29</span>
+            </div>
+            <div style="padding:6px 8px; font-size:0.75rem; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              🌉 3日目: 橋立つり橋
+            </div>
+          </div>
+
+          <div class="chapter-card" id="chap-4" onclick="seekVideo(123)" style="background:#1e293b; border-radius:10px; overflow:hidden; cursor:pointer; border:1px solid rgba(255,255,255,0.1); transition:all 0.2s;">
+            <div style="height:65px; background:url('assets/images/spot_kiranosato.jpg') center/cover; position:relative;">
+              <span style="position:absolute; bottom:4px; right:4px; background:rgba(0,0,0,0.7); font-size:0.68rem; padding:1px 5px; border-radius:4px; font-weight:700; color:#0288d1;">2:03</span>
+            </div>
+            <div style="padding:6px 8px; font-size:0.75rem; font-weight:700; color:white; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              🎉 まとめ・出発
+            </div>
+          </div>
+        </div>
+
+        <!-- ホスト紹介（イラストアバター付き） -->
+        <div class="podcast-hosts-info">
+          <div class="host-badge">
+            <img src="assets/images/avatar_nanami.jpg" alt="Nanami" style="width:44px; height:44px; border-radius:50%; border:2px solid #38bdf8; object-fit:cover;">
+            <div>
+              <div style="font-weight:800; color:white;">Nanami（AIナビゲーター）</div>
+              <div style="font-size:0.75rem; color:#94a3b8;">全体の進行・各スポットのハイライト案内</div>
+            </div>
+          </div>
+          <div class="host-badge">
+            <img src="assets/images/avatar_keita.jpg" alt="Keita" style="width:44px; height:44px; border-radius:50%; border:2px solid #fb923c; object-fit:cover;">
+            <div>
+              <div style="font-weight:800; color:white;">Keita（AIコメンテーター）</div>
+              <div style="font-size:0.75rem; color:#94a3b8;">見どころの深掘り・家族視点での解説</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <a href="assets/video/izu_trip_audio_overview.mp4" download class="chapter-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:#0288d1; color:white; border-color:#0288d1; padding:8px 16px; font-size:0.85rem;">
+            <i class="fa-solid fa-download"></i> MP4動画を保存（家族に共有）
+          </a>
+          <a href="assets/audio/notebooklm_overview.mp3" download class="chapter-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; padding:8px 16px; font-size:0.85rem;">
+            <i class="fa-solid fa-file-audio"></i> 音声のみ(MP3)保存
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openAudioModal() {
+      const modal = document.getElementById('audioModal');
+      modal.classList.add('active');
+      const video = document.getElementById('overviewVideo');
+      video.play().catch(e => console.log('Autoplay prevented:', e));
+    }
+
+    function closeAudioModal() {
+      const modal = document.getElementById('audioModal');
+      modal.classList.remove('active');
+      const video = document.getElementById('overviewVideo');
+      video.pause();
+    }
+
+    function closeAudioModalOnBg(e) {
+      if (e.target.id === 'audioModal') {
+        closeAudioModal();
+      }
+    }
+
+    function seekVideo(seconds) {
+      const video = document.getElementById('overviewVideo');
+      video.currentTime = seconds;
+      video.play();
+    }
+
+    function skipVideo(delta) {
+      const video = document.getElementById('overviewVideo');
+      video.currentTime = Math.max(0, Math.min(video.duration || 135, video.currentTime + delta));
+      video.play();
+    }
+
+    function setPlaySpeed(speed, btn) {
+      const video = document.getElementById('overviewVideo');
+      video.playbackRate = speed;
+      document.querySelectorAll('.speed-btn').forEach(b => {
+        b.style.background = 'rgba(255,255,255,0.1)';
+        b.style.color = '#cbd5e1';
+      });
+      btn.style.background = '#0288d1';
+      btn.style.color = 'white';
+    }
+
+    // チャプターアクティブ自動追従
+    const videoElem = document.getElementById('overviewVideo');
+    if (videoElem) {
+      videoElem.addEventListener('timeupdate', () => {
+        const t = videoElem.currentTime;
+        const chapIdx = t < 24 ? 0 : t < 54 ? 1 : t < 89 ? 2 : t < 123 ? 3 : 4;
+        for (let i = 0; i <= 4; i++) {
+          const card = document.getElementById(`chap-${i}`);
+          if (card) {
+            if (i === chapIdx) {
+              card.style.borderColor = '#38bdf8';
+              card.style.boxShadow = '0 0 12px rgba(56, 189, 248, 0.4)';
+              card.style.transform = 'scale(1.03)';
+            } else {
+              card.style.borderColor = 'rgba(255,255,255,0.1)';
+              card.style.boxShadow = 'none';
+              card.style.transform = 'scale(1)';
+            }
+          }
+        }
+      });
+    }
+
+    const lineMessage = `🌟 2026 伊豆シルバーウィーク 家族旅行 黄金プラン 🌟
+日程: 2026/9/21(月・祝)〜9/23(水・祝) 2泊3日
+人数: 家族3名（大人2名・10歳児1名）
+
+🚆【行き 9/21(月・祝)】
+特急 踊り子1号（指定席）
+大船 09:37発 ➡ 伊東 10:43着
+
+🏨【1泊目 9/21〜22】
+ホテルサンハトヤ（伊東温泉）
+TEL: 0557-36-4126 / 予約: K26082305157
+★宿泊者無料の古代ビーチプール＆海底温泉お魚風呂！
+★道の駅マリンタウンの海中展望船
+MAP: https://maps.google.com/?q=ホテルサンハトヤ
+
+🎡【2日目 9/22(火・祝)】
+・伊豆ぐらんぱる公園（1日遊び尽くす！ジップライン＆海賊船立体迷路・恐竜ゴーカート！）
+
+🏨【2泊目 9/22〜23】
+杜の湯 きらの里（伊豆高原）
+TEL: 0557-55-2400 / 予約: 2026082338603387
+★里山昔遊び・無料焼き芋・3つの貸切風呂・夜鳴きそば
+MAP: https://maps.google.com/?q=杜の湯+きらの里
+
+🌉【3日目 9/23(水・祝)】
+・橋立つり橋（長さ60m高さ18mの雄大な吊橋＆大淀小淀の磯遊び探検）
+・伊豆高原駅前 やまもプラザでランチ＆お土産
+
+🚆【帰り 9/23(水・祝) ★予約確定済】
+特急 踊り子62号（直通指定席）
+伊豆高原 16:09発 ➡ 大船 17:44着
+予約番号: E80864（7号車 16番A・16番B・15番A席）`;
+
+    function shareToLine() {
+      const url = `https://line.me/R/msg/text/?${encodeURIComponent(lineMessage)}`;
+      window.open(url, '_blank');
+    }
+
+    function copyLineText() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(lineMessage).then(() => showToast('旅程メッセージをコピーしました！'));
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initIzuMap();
+    });
+  </script>
+</body>
+</html>
