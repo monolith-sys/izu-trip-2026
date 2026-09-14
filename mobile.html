@@ -191,6 +191,92 @@
       z-index: 200;
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* プラン切り替えトグル (Segmented Control) */
+    .mode-switch-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+    }
+    .mode-switch-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--sub-text);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mode-switch-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 12px;
+    }
+    .mode-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 6px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      user-select: none;
+    }
+    .mode-btn-title {
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    .mode-btn-sub {
+      font-size: 10px;
+      opacity: 0.85;
+      line-height: 1.2;
+    }
+    .mode-btn.active.mode-sunny {
+      background: #ffffff;
+      color: #0284c7;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.2);
+    }
+    .mode-btn.active.mode-rainy {
+      background: #ffffff;
+      color: #7c3aed;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.2);
+    }
+    .mode-banner {
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-top: 8px;
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .banner-sunny {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      color: #0369a1;
+    }
+    .banner-rainy {
+      background: #faf5ff;
+      border: 1.5px solid #d8b4fe;
+      color: #6b21a8;
+    }
   </style>
 </head>
 <body>
@@ -250,105 +336,255 @@
     </div>
   </div>
 
-  <!-- 10歳児 黄金スケジュール -->
-  <div class="sec-card">
-    <div class="sec-header">
-      <h2 class="sec-title">🗺️ 詳細タイムスケジュール</h2>
-      <span class="sec-badge badge-blue">分刻み確定版</span>
+  <!-- プラン切り替えカード (Segmented Control) -->
+  <div class="mode-switch-card">
+    <div class="mode-switch-title">
+      <span>⛅ 天候別プラン切り替え</span>
+      <span style="font-size:10px; color:#64748b;">タップで瞬時に切り替え</span>
     </div>
+    <div class="mode-switch-container">
+      <button id="btn-mode-sunny" class="mode-btn active mode-sunny" onclick="switchPlanMode('sunny')">
+        <div class="mode-btn-title">☀️ 晴れ・通常プラン</div>
+        <div class="mode-btn-sub">ぐらんぱる・大室山・つり橋</div>
+      </button>
+      <button id="btn-mode-rainy" class="mode-btn mode-rainy" onclick="switchPlanMode('rainy')">
+        <div class="mode-btn-title">☔ 雨天・代替プラン</div>
+        <div class="mode-btn-sub">テディベア・温水プール・陶芸</div>
+      </button>
+    </div>
+    <div id="mode-banner" class="mode-banner banner-sunny">
+      <span>☀️</span>
+      <div><strong>通常プラン表示中：</strong>伊豆ぐらんぱる公園・大室山リフト・橋立つり橋を満喫する王道プランです。</div>
+    </div>
+  </div>
 
-    <!-- 1日目 -->
-    <div style="font-weight:800; font-size:13px; color:#0284c7; margin-bottom:8px;">
-      【1日目 9/21(月・祝)】海底冒険＆マリンタウン
-    </div>
-    <div class="timeline-step">
-      <div class="step-time">09:26 ➡ 10:43</div>
-      <div class="step-title">東戸塚発 ➡ 大船乗換 ➡ 特急踊り子1号で伊東へ</div>
-      <div class="step-desc">
-        <strong>予約: E45783（3号車 2A・2B・2C席）</strong><br>
-        在来線チケレス乗車。左側席から相模湾の海を一望！
+  <!-- 【プラン1：晴れ・通常プラン】 -->
+  <div id="plan-sunny" class="plan-wrapper">
+    <div class="sec-card">
+      <div class="sec-header">
+        <h2 class="sec-title">🗺️ 詳細タイムスケジュール</h2>
+        <span class="sec-badge badge-blue">晴天王道プラン</span>
+      </div>
+
+      <!-- 1日目 -->
+      <div style="font-weight:800; font-size:13px; color:#0284c7; margin-bottom:8px;">
+        【1日目 9/21(月・祝)】海底冒険＆マリンタウン
+      </div>
+      <div class="timeline-step">
+        <div class="step-time">09:26 ➡ 10:43</div>
+        <div class="step-title">東戸塚発 ➡ 大船乗換 ➡ 特急踊り子1号で伊東へ</div>
+        <div class="step-desc">
+          <strong>予約: E45783（3号車 2A・2B・2C席）</strong><br>
+          在来線チケレス乗車。左側席から相模湾の海を一望！
+        </div>
+      </div>
+      <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
+        <div class="step-time" style="color:#a21caf;">10:45〜11:45 ✨ 妻リクエスト</div>
+        <div class="step-title" style="color:#86198f;">伊東駅前 湯の花通り商店街をふらっと散策</div>
+        <div class="step-desc">駅ロッカーに荷物を預け、手湯足湯＆温泉まんじゅう・プリン食べ歩き！</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-time">11:55 ➡ 12:05</div>
+        <div class="step-title">送迎バスでサンハトヤへ荷物先預け</div>
+        <div class="step-desc">フロントで荷物を預けて身軽に行動！</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-time">12:15〜14:15</div>
+        <div class="step-title">道の駅 マリンタウン（海鮮ランチ＆遊覧船）</div>
+        <div class="step-desc">海鮮丼ランチ＆海中展望船ゆーみんフック！</div>
+        <div class="step-child">👦 船底ガラス窓から海中のお魚観察＆カモメのエサやり！</div>
+      </div>
+      <div class="timeline-step" style="border-color:#16a34a;">
+        <div class="step-time">14:30〜17:00</div>
+        <div class="step-title">サンハトヤ 古代ビーチ＆海底温泉（無料）</div>
+        <div class="step-desc">水着プールで泳ぎ、巨大水槽のお魚風呂へ！18時〜夕食バイキング。</div>
+        <div class="step-child">👦 水族館の中に入ってお風呂に入るような大水槽！</div>
+      </div>
+
+      <!-- 2日目 -->
+      <div style="font-weight:800; font-size:13px; color:#16a34a; margin:16px 0 8px;">
+        【2日目 9/22(火・祝)】伊豆ぐらんぱる公園を遊び尽くす！
+      </div>
+      <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
+        <div class="step-time" style="color:#a21caf;">09:30 ➡ 10:24 ✨ 10:03発電車</div>
+        <div class="step-title" style="color:#86198f;">サンハトヤ発 ➡ 伊東駅 10:03発（伊豆急行）➡ 伊豆高原駅</div>
+        <div class="step-desc">10:03発の普通列車で伊豆高原へ10:24着！駅ロッカーに荷物預け。</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-time">10:50〜15:45</div>
+        <div class="step-title">伊豆ぐらんぱる公園（昼食＆大満喫 たっぷり5時間！）</div>
+        <div class="step-desc">朝早く着いて混雑前に大満喫！ジップライン・海賊船立体迷路・恐竜カート！</div>
+        <div class="step-child">👦 往復400mのジップライン空中滑空＆立体迷路で大興奮！</div>
+      </div>
+      <div class="timeline-step" style="border-color:#16a34a;">
+        <div class="step-time">16:30〜</div>
+        <div class="step-title">杜の湯 きらの里 チェックイン</div>
+        <div class="step-desc">
+          里山昔遊び、無料焼き芋、3つの貸切風呂、里山会席、夜鳴きそば！
+          <br><strong style="color:#be123c;">⚠️ 共立リゾート株主優待券をフロントへ提出！</strong>
+        </div>
+        <div class="step-child">👦 焼き芋・夜鳴きそば・湯上りアイスと無料のお楽しみ満載！</div>
+      </div>
+
+      <!-- 3日目 -->
+      <div style="font-weight:800; font-size:13px; color:#ea580c; margin:16px 0 8px;">
+        【3日目 9/23(水・祝)】大室山絶景＆橋立つり橋アドベンチャー
+      </div>
+      <div class="timeline-step">
+        <div class="step-time">07:30〜09:30</div>
+        <div class="step-title">朝風呂・無料ヤクルト＆里山朝食 ➡ 09:30発</div>
+        <div class="step-desc">小川散策や足湯。09:30チェックアウト。</div>
+      </div>
+      <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
+        <div class="step-time" style="color:#a21caf;">09:50〜12:00 ✨ 妻リクエスト</div>
+        <div class="step-title" style="color:#86198f;">大室山 登山リフト＆山頂お鉢巡り</div>
+        <div class="step-desc">リフトで標高580mへ！360度大パノラマ絶景（富士山＆相模湾）とお鉢周遊！</div>
+        <div class="step-child">👦 リフト空中散歩＆すり鉢火口でのアーチェリー体験！</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-time">12:20〜14:10</div>
+        <div class="step-title">橋立つり橋＆対島滝・大淀小淀探検</div>
+        <div class="step-desc">長さ60m高さ18mの雄大な吊橋！海に注ぐ幻の滝＆天然プールで磯遊び！</div>
+        <div class="step-child">👦 山（大室山）と海（吊り橋・磯）の両方を大冒険！</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-time">14:25〜15:55</div>
+        <div class="step-title">伊豆高原駅前 やまもプラザで昼食＆お土産・カフェ</div>
+        <div class="step-desc">金目鯛ランチ、干物・お菓子のお買い物＆カフェ休憩。</div>
+      </div>
+      <div class="timeline-step" style="margin-bottom:0; border-color:#16a34a;">
+        <div class="step-time">16:09 ➡ 17:59</div>
+        <div class="step-title">伊豆高原発 ➡ 特急踊り子62号 ➡ 大船乗換 ➡ 東戸塚帰着</div>
+        <div class="step-desc">
+          <strong>予約: E80864（7号車 16A・16B・15A席）</strong><br>
+          在来線チケレス乗車。伊東へ戻る無駄ゼロ！大船乗換で東戸塚へ17:59スムーズ帰着！
+        </div>
       </div>
     </div>
-    <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
-      <div class="step-time" style="color:#a21caf;">10:45〜11:45 ✨ 妻リクエスト</div>
-      <div class="step-title" style="color:#86198f;">伊東駅前 湯の花通り商店街をふらっと散策</div>
-      <div class="step-desc">駅ロッカーに荷物を預け、手湯足湯＆温泉まんじゅう・プリン食べ歩き！</div>
-    </div>
-    <div class="timeline-step">
-      <div class="step-time">11:55 ➡ 12:05</div>
-      <div class="step-title">送迎バスでサンハトヤへ荷物先預け</div>
-      <div class="step-desc">フロントで荷物を預けて身軽に行動！</div>
-    </div>
-    <div class="timeline-step">
-      <div class="step-time">12:15〜14:15</div>
-      <div class="step-title">道の駅 マリンタウン（海鮮ランチ＆遊覧船）</div>
-      <div class="step-desc">海鮮丼ランチ＆海中展望船ゆーみんフック！</div>
-      <div class="step-child">👦 船底ガラス窓から海中のお魚観察＆カモメのエサやり！</div>
-    </div>
-    <div class="timeline-step" style="border-color:#16a34a;">
-      <div class="step-time">14:30〜17:00</div>
-      <div class="step-title">サンハトヤ 古代ビーチ＆海底温泉（無料）</div>
-      <div class="step-desc">水着プールで泳ぎ、巨大水槽のお魚風呂へ！18時〜夕食バイキング。</div>
-      <div class="step-child">👦 水族館の中に入ってお風呂に入るような大水槽！</div>
-    </div>
+  </div>
 
-    <!-- 2日目 -->
-    <div style="font-weight:800; font-size:13px; color:#16a34a; margin:16px 0 8px;">
-      【2日目 9/22(火・祝)】伊豆ぐらんぱる公園を遊び尽くす！
-    </div>
-    <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
-      <div class="step-time" style="color:#a21caf;">09:30 ➡ 10:24 ✨ 10:03発電車</div>
-      <div class="step-title" style="color:#86198f;">サンハトヤ発 ➡ 伊東駅 10:03発（伊豆急行）➡ 伊豆高原駅</div>
-      <div class="step-desc">10:03発の普通列車で伊豆高原へ10:24着！駅ロッカーに荷物預け。</div>
-    </div>
-    <div class="timeline-step">
-      <div class="step-time">10:50〜15:45</div>
-      <div class="step-title">伊豆ぐらんぱる公園（昼食＆大満喫 たっぷり5時間！）</div>
-      <div class="step-desc">朝早く着いて混雑前に大満喫！ジップライン・海賊船立体迷路・恐竜カート！</div>
-      <div class="step-child">👦 往復400mのジップライン空中滑空＆立体迷路で大興奮！</div>
-    </div>
-    <div class="timeline-step" style="border-color:#16a34a;">
-      <div class="step-time">16:30〜</div>
-      <div class="step-title">杜の湯 きらの里 チェックイン</div>
-      <div class="step-desc">
-        里山昔遊び、無料焼き芋、3つの貸切風呂、里山会席、夜鳴きそば！
-        <br><strong style="color:#be123c;">⚠️ 共立リゾート株主優待券をフロントへ提出！</strong>
+  <!-- 【プラン2：雨天・荒天代替プラン】 -->
+  <div id="plan-rainy" class="plan-wrapper" style="display:none;">
+    <div class="sec-card" style="border-color:#c4b5fd;">
+      <div class="sec-header">
+        <h2 class="sec-title" style="color:#6d28d9;">☔ 雨天・荒天代替スケジュール</h2>
+        <span class="sec-badge" style="background:#ede9fe; color:#6d28d9; font-weight:800;">完全屋内安心プラン</span>
       </div>
-      <div class="step-child">👦 焼き芋・夜鳴きそば・湯上りアイスと無料のお楽しみ満載！</div>
-    </div>
 
-    <!-- 3日目 -->
-    <div style="font-weight:800; font-size:13px; color:#ea580c; margin:16px 0 8px;">
-      【3日目 9/23(水・祝)】大室山絶景＆橋立つり橋アドベンチャー
-    </div>
-    <div class="timeline-step">
-      <div class="step-time">07:30〜09:30</div>
-      <div class="step-title">朝風呂・無料ヤクルト＆里山朝食 ➡ 09:30発</div>
-      <div class="step-desc">小川散策や足湯。09:30チェックアウト。</div>
-    </div>
-    <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
-      <div class="step-time" style="color:#a21caf;">09:50〜12:00 ✨ 妻リクエスト</div>
-      <div class="step-title" style="color:#86198f;">大室山 登山リフト＆山頂お鉢巡り</div>
-      <div class="step-desc">リフトで標高580mへ！360度大パノラマ絶景（富士山＆相模湾）とお鉢周遊！</div>
-      <div class="step-child">👦 リフト空中散歩＆すり鉢火口でのアーチェリー体験！</div>
-    </div>
-    <div class="timeline-step">
-      <div class="step-time">12:20〜14:10</div>
-      <div class="step-title">橋立つり橋＆対島滝・大淀小淀探検</div>
-      <div class="step-desc">長さ60m高さ18mの雄大な吊橋！海に注ぐ幻の滝＆天然プールで磯遊び！</div>
-      <div class="step-child">👦 山（大室山）と海（吊り橋・磯）の両方を大冒険！</div>
-    </div>
-    <div class="timeline-step">
-      <div class="step-time">14:25〜15:55</div>
-      <div class="step-title">伊豆高原駅前 やまもプラザで昼食＆お土産・カフェ</div>
-      <div class="step-desc">金目鯛ランチ、干物・お菓子のお買い物＆カフェ休憩。</div>
-    </div>
-    <div class="timeline-step" style="margin-bottom:0; border-color:#16a34a;">
-      <div class="step-time">16:09 ➡ 17:59</div>
-      <div class="step-title">伊豆高原発 ➡ 特急踊り子62号 ➡ 大船乗換 ➡ 東戸塚帰着</div>
-      <div class="step-desc">
-        <strong>予約: E80864（7号車 16A・16B・15A席）</strong><br>
-        在来線チケレス乗車。伊東へ戻る無駄ゼロ！大船乗換で東戸塚へ17:59スムーズ帰着！
+      <!-- 1日目（雨天） -->
+      <div style="font-weight:800; font-size:13px; color:#7c3aed; margin-bottom:8px;">
+        【1日目 9/21(月・祝)】駅前食べ歩き ＆ 屋内温泉プール天国
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed;">
+        <div class="step-time" style="color:#7c3aed;">09:26 ➡ 10:43</div>
+        <div class="step-title">東戸塚発 ➡ 特急踊り子1号で伊東へ</div>
+        <div class="step-desc">
+          <strong>予約: E45783（3号車 2A・2B・2C席）</strong><br>
+          在来線チケレス乗車。※雨天時は最新運行情報をチェック。
+        </div>
+      </div>
+      <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
+        <div class="step-time" style="color:#a21caf;">10:45〜11:45 ✨ 妻リクエスト</div>
+        <div class="step-title" style="color:#86198f;">伊東駅前 湯の花通り商店街をふらっと散策</div>
+        <div class="step-desc">アーケードや軒先で傘をさしながら、手湯足湯「ふれあいの湯」＆温かい温泉まんじゅう・名物湯の花プリンを食べ歩き！</div>
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed;">
+        <div class="step-time" style="color:#7c3aed;">11:55 ➡ 12:05</div>
+        <div class="step-title">送迎バスでサンハトヤへ荷物預け</div>
+        <div class="step-desc">フロントでスーツケースを預けて身軽に行動！</div>
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed;">
+        <div class="step-time" style="color:#7c3aed;">12:15〜14:15</div>
+        <div class="step-title">道の駅 マリンタウン（完全屋内海鮮ランチ＆お買い物）</div>
+        <div class="step-desc">雨風を気にせず屋内レストラン街で金目鯛煮付けや海鮮丼ランチ！お土産選びや海が見える屋内足湯カフェを満喫。<br><small style="color:#94a3b8;">※雨天・波が高い日は遊覧船は休止となります。</small></div>
+      </div>
+      <div class="timeline-step" style="border-color:#16a34a; background:#f0fdf4;">
+        <div class="step-time" style="color:#15803d;">14:30〜17:30 🏰 雨天最強スポット！</div>
+        <div class="step-title" style="color:#15803d;">サンハトヤ 古代ビーチ温水プール ＆ 海底温泉千石風呂</div>
+        <div class="step-desc">
+          <strong>外が雨風でも完全屋内だから100%安心！</strong><br>
+          水着で泳げる温水プール「古代ビーチ」で泳ぎまくり！巨大水槽でお魚やウミガメが泳ぐ名物「海底温泉千石風呂」でぽかぽか入浴。
+        </div>
+        <div class="step-child">👦 雨の日でもプールとお風呂で大はしゃぎ！夕方まで完全屋内で遊べます！</div>
+      </div>
+
+      <!-- 2日目（雨天代替） -->
+      <div style="font-weight:800; font-size:13px; color:#7c3aed; margin:16px 0 8px;">
+        【2日目 9/22(火・祝)】伊豆高原 完全屋内ミュージアム＆里山温泉
+      </div>
+      <div class="timeline-step" style="border-color:#f0abfc; background:#fdf4ff;">
+        <div class="step-time" style="color:#a21caf;">09:30 ➡ 10:24 ✨ 10:03発電車</div>
+        <div class="step-title" style="color:#86198f;">サンハトヤ発 ➡ 伊東駅 10:03発（伊豆急行）➡ 伊豆高原駅</div>
+        <div class="step-desc">10:03発の普通列車で伊豆高原へ10:24着！駅ロッカーに荷物預け。</div>
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed; background:#faf5ff;">
+        <div class="step-time" style="color:#6d28d9;">10:40〜13:15 🧸 完全屋内おすすめ①</div>
+        <div class="step-title" style="color:#6d28d9;">伊豆テディベア・ミュージアム ＆ となりのトトロ展！</div>
+        <div class="step-desc">
+          伊豆高原駅から徒歩9分（雨天時はタクシー約3分）。<br>
+          <strong>完全屋内施設で雨風をシャットアウト！</strong><br>
+          ・大人気「となりのトトロのぬいぐるみ展」開催中！巨大ネコバスに乗って写真撮影！<br>
+          ・世界中のアンティークベア鑑賞＆限定グッズSHOP<br>
+          ・ティールームで自家製シフォンケーキや紅茶で優雅なカフェタイム。
+        </div>
+        <div class="step-child">👦 巨大ネコバスに乗れて大興奮！大人も子どもも夢中になれるトトロの世界！</div>
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed;">
+        <div class="step-time" style="color:#7c3aed;">13:20〜14:15</div>
+        <div class="step-title">テディベア・カフェ または 駅前でゆったりランチ</div>
+        <div class="step-desc">かわいいカフェプレートや、駅前レストランでランチ。</div>
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed; background:#faf5ff;">
+        <div class="step-time" style="color:#6d28d9;">14:30〜16:00 🎨 完全屋内おすすめ②</div>
+        <div class="step-title" style="color:#6d28d9;">伊豆高原クラフト体験（陶芸・ジェルキャンドル作り）</div>
+        <div class="step-desc">
+          雨の日の伊豆高原は手作り体験天国！ジェルキャンドルや陶芸の絵付けなど、旅の記念になる作品を家族で作成！<br>
+          <small style="color:#64748b;">※または「伊豆シャボテン動物公園」の巨大温室ピラミッド巡り（屋内連絡通路あり）も選択可能！</small>
+        </div>
+      </div>
+      <div class="timeline-step" style="border-color:#16a34a;">
+        <div class="step-time" style="color:#15803d;">16:30〜</div>
+        <div class="step-title">杜の湯 きらの里 チェックイン ＆ 雨音を楽しむ里山ステイ</div>
+        <div class="step-desc">
+          屋根付きの3つの無料貸切露天風呂で雨音を聞きながら温泉三昧！<br>
+          帳場内で昔遊び、無料焼き芋、里山会席、無料夜鳴きそば！<br>
+          <strong style="color:#be123c;">⚠️ 共立リゾート株主優待券をフロントへ提出！</strong>
+        </div>
+        <div class="step-child">👦 雨の日でも屋根付き貸切風呂・焼き芋・夜鳴きそばと無料サービス満載！</div>
+      </div>
+
+      <!-- 3日目（雨天代替） -->
+      <div style="font-weight:800; font-size:13px; color:#7c3aed; margin:16px 0 8px;">
+        【3日目 9/23(水・祝)】里山レイトステイ ＆ 駅直結モール満喫
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed;">
+        <div class="step-time" style="color:#7c3aed;">08:00〜10:30</div>
+        <div class="step-title">朝風呂・無料ヤクルト＆里山朝食 ➡ 10:30発（レイトステイ）</div>
+        <div class="step-desc">雨の日は焦らず里山ステイ！温泉朝風呂と美味しい里山朝食をゆったり満喫して10:30チェックアウト。</div>
+      </div>
+      <div class="timeline-step" style="border-color:#7c3aed; background:#faf5ff;">
+        <div class="step-time" style="color:#6d28d9;">10:50〜12:30 🎵 完全屋内おすすめ</div>
+        <div class="step-title" style="color:#6d28d9;">伊豆オルゴール館 または アンティークジュエリーミュージアム</div>
+        <div class="step-desc">歴史あるオルゴールの生演奏実演や、華やかな宝石・工芸品を鑑賞。雨でも優雅な時間を過ごせます。</div>
+      </div>
+      <div class="timeline-step" style="border-color:#16a34a; background:#f0fdf4;">
+        <div class="step-time" style="color:#15803d;">12:45〜15:55 🛍️ 改札直結・雨濡れゼロ！</div>
+        <div class="step-title" style="color:#15803d;">伊豆高原駅前 やまもプラザで贅沢ランチ ＆ お土産ショッピング</div>
+        <div class="step-desc">
+          <strong>駅改札直結の屋内ショッピングモールなので雨風に一切濡れません！</strong><br>
+          ・金目鯛の煮付け膳や海鮮丼、名物そばを堪能！<br>
+          ・ぐり茶カフェでスイーツ休憩＆干物、銘菓、お土産をゆっくりお買い物。<br>
+          ・コインロッカーの荷物をピックアップして待合スペースでゆったり。
+        </div>
+        <div class="step-child">👦 雨の日でも駅直結だから傘なしで快適！お土産もランチも全部ここで揃います！</div>
+      </div>
+      <div class="timeline-step" style="margin-bottom:0; border-color:#16a34a;">
+        <div class="step-time" style="color:#15803d;">16:09 ➡ 17:59</div>
+        <div class="step-title">伊豆高原発 ➡ 特急踊り子62号 ➡ 大船乗換 ➡ 東戸塚帰着</div>
+        <div class="step-desc">
+          <strong>予約: E80864（7号車 16A・16B・15A席）</strong><br>
+          在来線チケレス乗車。座ったまま大船乗換で東戸塚へ快適直通帰着！
+        </div>
       </div>
     </div>
   </div>
@@ -367,7 +603,9 @@
   <div class="toast" id="toast">コピーしました</div>
 
   <script>
-    const lineMessage = `🌟 2026 伊豆シルバーウィーク 家族旅行 旅の栞 🌟
+    let currentPlanMode = 'sunny';
+
+    const lineMessageSunny = `🌟 2026 伊豆シルバーウィーク 家族旅行 旅の栞【晴天王道プラン】🌟
 日程: 2026/9/21(月・祝)〜9/23(水・祝) 2泊3日
 人数: 家族3名（おとな2人・こども1人）
 
@@ -403,21 +641,97 @@ TEL: 0557-55-2400 / 予約: 2026082338603387
 📌 予約番号: E80864
 💺 座席: 7号車 16番A席・16番B席・15番A席（指定席）`;
 
-    function shareToLine() {
-      const url = `https://line.me/R/msg/text/?${encodeURIComponent(lineMessage)}`;
-      window.open(url, '_blank');
-    }
-    function copyFullText() {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(lineMessage).then(() => showToast('旅程メッセージをコピーしました！'));
+    const lineMessageRainy = `☔ 2026 伊豆シルバーウィーク 家族旅行【雨天・荒天代替安心プラン】☔
+日程: 2026/9/21(月・祝)〜9/23(水・祝) 2泊3日
+人数: 家族3名（おとな2人・こども1人）
+
+🚆【行き 9/21(月・祝)】
+東戸塚 09:26発 ➡ 大船 09:37発 ➡ 伊東 10:43着
+特急 踊り子（伊東編成）1号（在来線チケレス乗車）
+📌 予約番号: E45783（3号車 2A・2B・2C席）
+
+🏊【1日目 9/21(月・祝) 雨天安心】
+・伊東駅前 湯の花通り商店街ふらっと散策・温泉まんじゅう＆プリン食べ歩き！
+・道の駅マリンタウン（完全屋内の海鮮丼ランチ＆お土産ショッピング）
+・ホテルサンハトヤ（雨でも完全屋内！巨大水槽の海底温泉千石風呂＆古代ビーチ温水プールで遊びまくり！）
+TEL: 0557-36-4126 / 予約: K26082305157
+
+🧸【2日目 9/22(火・祝) 完全屋内満喫】
+・サンハトヤ 09:30発 ➡ 伊東駅 10:03発（伊豆急行）で伊豆高原駅へ！
+・伊豆テディベア・ミュージアム ＆ となりのトトロ展（巨大ネコバスに乗れる！完全屋内）
+・伊豆高原クラフト体験（陶芸絵付け・ジェルキャンドル作り）
+・杜の湯 きらの里（雨音を聴く屋根付き貸切露天風呂・無料焼き芋・夜泣きそば）
+TEL: 0557-55-2400 / 予約: 2026082338603387
+⚠️【必携】共立リゾート株主優待券原本を持参！
+
+🛍️【3日目 9/23(水・祝) 駅直結モール】
+・きらの里でのんびりレイトステイ（朝風呂・無料ヤクルト・里山朝食）
+・伊豆オルゴール館 または アンティークジュエリーミュージアム（完全屋内）
+・伊豆高原駅前 やまもプラザ（改札直結で雨風ゼロ！金目鯛ランチ＆お土産・カフェ）
+
+🚆【帰り 9/23(水・祝)】
+伊豆高原 16:09発 ➡ 大船 17:44着 ➡ 東戸塚 17:59着
+特急 踊り子（伊東編成）62号（在来線チケレス乗車）
+📌 予約番号: E80864（7号車 16番A・16番B・15番A席）`;
+
+    function switchPlanMode(mode) {
+      currentPlanMode = mode;
+      localStorage.setItem('izu_mobile_plan_mode', mode);
+
+      const btnSunny = document.getElementById('btn-mode-sunny');
+      const btnRainy = document.getElementById('btn-mode-rainy');
+      const planSunny = document.getElementById('plan-sunny');
+      const planRainy = document.getElementById('plan-rainy');
+      const banner = document.getElementById('mode-banner');
+
+      if (mode === 'rainy') {
+        btnSunny.classList.remove('active');
+        btnRainy.classList.add('active');
+        planSunny.style.display = 'none';
+        planRainy.style.display = 'block';
+        banner.className = 'mode-banner banner-rainy';
+        banner.innerHTML = '<span>☔</span><div><strong>雨天・代替プラン表示中：</strong>テディベア・温水プール・陶芸・駅直結やまもプラザなど、完全屋内スポットを中心とした安心プランです。</div>';
+        showToast('雨天・代替プランに切り替えました ☔');
+      } else {
+        btnRainy.classList.remove('active');
+        btnSunny.classList.add('active');
+        planRainy.style.display = 'none';
+        planSunny.style.display = 'block';
+        banner.className = 'mode-banner banner-sunny';
+        banner.innerHTML = '<span>☀️</span><div><strong>通常プラン表示中：</strong>伊豆ぐらんぱる公園・大室山リフト・橋立つり橋を満喫する王道プランです。</div>';
+        showToast('晴れ・通常プランに切り替えました ☀️');
       }
     }
+
+    function shareToLine() {
+      const msg = (currentPlanMode === 'rainy') ? lineMessageRainy : lineMessageSunny;
+      const url = `https://line.me/R/msg/text/?${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    function copyFullText() {
+      const msg = (currentPlanMode === 'rainy') ? lineMessageRainy : lineMessageSunny;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(msg).then(() => {
+          showToast((currentPlanMode === 'rainy') ? '雨天プランをコピーしました！' : '通常プランをコピーしました！');
+        });
+      }
+    }
+
     function showToast(msg) {
       const t = document.getElementById('toast');
       t.textContent = msg;
       t.classList.add('show');
       setTimeout(() => t.classList.remove('show'), 2000);
     }
+
+    // 読み込み時に保存されたモードを復元
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('izu_mobile_plan_mode');
+      if (saved === 'rainy') {
+        switchPlanMode('rainy');
+      }
+    });
   </script>
 </body>
 </html>
