@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>京都・奈良 年末家族旅行 旅のしおり 2026</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --purple: #7c3aed;
+      --purple-light: #f3e8ff;
+      --amber: #d97706;
+      --amber-light: #fef3c7;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --sub-text: #475569;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 12px 12px 85px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 50%, #0f766e 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 22px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 24px rgba(3, 105, 161, 0.25);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.22);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+    .child-badge {
+      display: inline-block;
+      background: #fef08a;
+      color: #854d0e;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-left: 4px;
+    }
+    .hero-title { font-size: 20px; font-weight: 800; line-height: 1.35; margin-bottom: 6px; }
+    .hero-sub { font-size: 12.5px; opacity: 0.95; line-height: 1.4; }
+    
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .action-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .btn-line {
+      background: #06c755;
+      color: #fff;
+      border: none;
+      grid-column: span 2;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .sec-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .sec-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .sec-title { font-size: 15px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+    .sec-badge { font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+    .badge-blue { background: var(--primary-light); color: var(--primary-dark); }
+    .badge-green { background: var(--green-light); color: var(--green); }
+    .badge-purple { background: var(--purple-light); color: var(--purple); }
+    .badge-amber { background: var(--amber-light); color: var(--amber); }
+
+    .timeline-step {
+      border-left: 2.5px solid var(--primary);
+      padding-left: 14px;
+      margin-left: 6px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .timeline-step.green { border-color: var(--green); }
+    .timeline-step.green::before { background: var(--green); }
+    .timeline-step.amber { border-color: var(--amber); }
+    .timeline-step.amber::before { background: var(--amber); }
+    .timeline-step.purple { border-color: var(--purple); }
+    .timeline-step.purple::before { background: var(--purple); }
+
+    .step-time { font-size: 11px; font-weight: 800; color: var(--primary-dark); margin-bottom: 2px; }
+    .step-title { font-size: 13.5px; font-weight: 800; margin-bottom: 3px; }
+    .step-desc { font-size: 12px; color: var(--sub-text); line-height: 1.5; }
+    .step-child {
+      background: #fffbeb;
+      border-left: 3px solid #f59e0b;
+      padding: 5px 8px;
+      border-radius: 0 6px 6px 0;
+      font-size: 11px;
+      color: #92400e;
+      font-weight: 700;
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+    .step-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      margin-top: 4px;
+    }
+
+    .bottom-fix {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 8px 12px;
+      display: flex;
+      gap: 8px;
+      max-width: 480px;
+      margin: 0 auto;
+      z-index: 100;
+    }
+    .btn-fix {
+      flex: 1;
+      padding: 11px;
+      border-radius: 25px;
+      font-size: 12.5px;
+      font-weight: 800;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+    }
+    .toast {
+      position: fixed;
+      bottom: 65px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1e293b;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s;
+      z-index: 200;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ヒーロー -->
+  <div class="hero-card">
+    <div class="hero-tag">⛩️ 2026 年末 寄り道1泊</div>
+    <div class="child-badge">👦 小5 歴史・社会科見学</div>
+    <h1 class="hero-title">京都・奈良 家族旅行のしおり</h1>
+    <div class="hero-sub">
+      <div>📅 2026年12月29日(火)〜12月30日(水)</div>
+      <div>👨‍👩‍👦 家族3名（大人2名・小学5年生1名）</div>
+      <div>🏯 西本願寺（浄土真宗本山）➡ 奈良温泉泊 ➡ 東大寺・法隆寺・ポケふた ➡ 岡山実家</div>
+    </div>
+  </div>
+
+  <!-- クイックアクション -->
+  <div class="quick-actions">
+    <button class="action-btn btn-line" onclick="shareToLine()">
+      💬 LINEでこの旅程を送る
+    </button>
+    <a href="https://dormy-hotels.com/dormyinn/hotels/nono_nara/" target="_blank" class="action-btn">
+      🏨 野乃 奈良 公式ページ
+    </a>
+    <a href="tel:0742205489" class="action-btn">
+      📞 野乃 奈良へ電話
+    </a>
+  </div>
+
+  <!-- 最重要チェック：株主優待 -->
+  <div class="sec-card" style="background:#fff1f2; border:2px solid #f43f5e; padding:12px; margin-bottom:12px;">
+    <div style="display:flex; align-items:flex-start; gap:8px;">
+      <span style="font-size:22px;">⚠️</span>
+      <div>
+        <strong style="color:#be123c; font-size:13px;">【必携】共立メンテナンス株主優待券！</strong>
+        <div style="font-size:11.5px; color:#9f1239; margin-top:3px; line-height:1.4;">
+          チェックイン時の現地精算で1,000円優待電子チケットを提示して割引を受けます。スマホで優待サイトへログインできる状態（株主番号確認）にしておきましょう！
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 乗車券ハックカード -->
+  <div class="sec-card" style="background:#f0fdf4; border-color:#86efac;">
+    <div class="sec-header">
+      <h2 class="sec-title" style="color:#15803d;">🎫 途中下車OK！一筆書き乗車券</h2>
+      <span class="sec-badge badge-green">交通費ハック</span>
+    </div>
+    <div style="font-size:12px; color:#14532d; line-height:1.6;">
+      <strong>きっぷの買い方（みどりの窓口または指定席券売機）：</strong><br>
+      ・<strong>片道乗車券：</strong>「横浜市内 ➡ 岡山（または早島）」<br>
+      ・<strong>経由：</strong>新幹線・京都・奈良線・関西線・おおさか東線・新大阪・山陽新幹線<br>
+      📌 <strong>有効期間5日間</strong>。京都駅・奈良駅・法隆寺駅・新大阪駅のすべてで**追加運賃なしで途中下車（改札外へ出ること）が可能**です！<br>
+      ※新幹線特急券のみ「新横浜➡京都」と「新大阪➡岡山」の2枚を別々に購入します。
+    </div>
+  </div>
+
+  <!-- 1日目タイムスケジュール -->
+  <div class="sec-card">
+    <div class="sec-header">
+      <h2 class="sec-title">🗺️ 1日目：12月29日(火)</h2>
+      <span class="sec-badge badge-blue">京都・西本願寺 ➡ 奈良</span>
+    </div>
+
+    <div class="timeline-step">
+      <div class="step-time">07:00頃 ➡ 07:42</div>
+      <div class="step-title">東戸塚発 ➡ 新横浜駅へ</div>
+      <div class="step-desc">
+        JR横須賀線で横浜駅、市営地下鉄ブルーラインで新横浜駅へ（約30分）。新横浜駅で朝ごはんを購入。
+      </div>
+    </div>
+
+    <div class="timeline-step">
+      <div class="step-time">07:42発 ➡ 09:32着</div>
+      <div class="step-title">東海道新幹線 のぞみ（新横浜 ➡ 京都）</div>
+      <div class="step-desc">
+        新幹線で約1時間50分。京都駅八条口または中央口のコインロッカーにスーツケースを預けて身軽に行動！<br>
+        <small style="color:var(--muted);">※指定席発売：乗車1ヶ月前 11/29(日) 10:00〜</small>
+      </div>
+    </div>
+
+    <div class="timeline-step purple">
+      <div class="step-time" style="color:var(--purple);">09:50 ➡ 11:15 ⭐ 浄土真宗の総本山</div>
+      <div class="step-title">西本願寺（お西さん）参拝 ＆ 無料お坊さんガイドツアー</div>
+      <div class="step-desc">
+        京都駅烏丸口から市バス約5分（または徒歩約15分）。入山無料・予約不要。<br>
+        ・<strong>10:00〜10:30：お坊さんの無料境内案内「お西さんを知ろう！」に参加！</strong>（集合：御影堂門すぐのお茶所）<br>
+        ・床板の「隠れ埋め木（富士山や魚の形）」を探すなど小5もワクワク！<br>
+        ・巨大な国宝「御影堂」「阿弥陀堂」の大広間に座り、我が家のルーツ・浄土真宗の圧倒的スケールを体感。<br>
+        ・国宝「唐門（日暮門）」や天然記念物「大銀杏」を見学。
+      </div>
+      <div class="step-child">👦 小5ポイント：織田信長と戦い、豊臣秀吉がこの地を寄進した歴史の舞台！予約なしでお坊さんの解説付き！</div>
+      <a href="https://www.hongwanji.or.jp/" target="_blank" class="step-link">🔗 西本願寺 公式サイト</a>
+    </div>
+
+    <div class="timeline-step">
+      <div class="step-time">11:30 ➡ 12:45</div>
+      <div class="step-title">東本願寺の前を通りつつ京都駅へ ＆ ランチ</div>
+      <div class="step-desc">
+        西本願寺から東へ歩き、徳川家康が建てさせた「東本願寺」の日本一高い木造山門（御影堂門）を眺めながら京都駅へ（徒歩約10分）。駅ビルやポルタで京都ランチ！駅ロッカーの荷物をピックアップ。
+      </div>
+    </div>
+
+    <div class="timeline-step">
+      <div class="step-time">13:00頃 ➡ 13:45着</div>
+      <div class="step-title">JR奈良線（みやこ路快速）で JR奈良駅へ直通！</div>
+      <div class="step-desc">
+        京都駅からみやこ路快速で約45分。乗り換えなしでJR奈良駅へ快適移動。
+      </div>
+    </div>
+
+    <div class="timeline-step green">
+      <div class="step-time" style="color:var(--green);">14:00 ➡ 17:00 🦌 奈良公園＆ならまち散策</div>
+      <div class="step-title">ホテル荷物預け ➡ 奈良公園の鹿 ＆ 興福寺・ならまち</div>
+      <div class="step-desc">
+        JR奈良駅東口徒歩1分の**「御宿 野乃 奈良」**にまず荷物を預けて手ぶらに！<br>
+        ・三条通りを歩いて奈良公園へ。鹿せんべいを買って鹿とふれあい！<br>
+        ・世界遺産・興福寺（五重塔・国宝館）を散策。<br>
+        ・レトロな町家が並ぶ「ならまち」でお茶・スイーツ休憩。
+      </div>
+      <div class="step-child">👦 小5ポイント：人懐っこい鹿たちに囲まれる奈良公園！お辞儀する鹿せんべいタイム！</div>
+    </div>
+
+    <div class="timeline-step green">
+      <div class="step-time" style="color:var(--green);">17:30〜</div>
+      <div class="step-title">天然温泉 吉野桜の湯 御宿 野乃 奈良 チェックイン</div>
+      <div class="step-desc">
+        全館畳敷きの和風プレミアムホテル！<br>
+        ・最上階の天然温泉大浴場（半露天風呂・サウナ）で旅の疲れをほっこり癒やす。<br>
+        ・夕食はJR奈良駅周辺でお好みの奈良グルメ（大和ポーク・釜飯など）。<br>
+        ・21:30〜23:00は名物の**無料「夜鳴きそば」**（あっさり醤油ラーメン）！
+      </div>
+    </div>
+  </div>
+
+  <!-- 2日目タイムスケジュール -->
+  <div class="sec-card">
+    <div class="sec-header">
+      <h2 class="sec-title">🗺️ 2日目：12月30日(水)</h2>
+      <span class="sec-badge badge-amber">東大寺朝一番 ➡ 法隆寺 ➡ 岡山実家</span>
+    </div>
+
+    <div class="timeline-step">
+      <div class="step-time">07:00 ➡ 07:45</div>
+      <div class="step-title">ホテル名物！海鮮丼バイキング朝食</div>
+      <div class="step-desc">
+        いくらのせ放題の海鮮丼、柿の葉寿司、三輪そうめんなど奈良の味覚を満喫。<br>
+        ★大きなスーツケースは**フロントに預けたまま**身軽に出発！
+      </div>
+    </div>
+
+    <div class="timeline-step amber">
+      <div class="step-time" style="color:var(--amber);">08:00 ➡ 09:30 ⭐ 朝の特権！静寂の大仏さま</div>
+      <div class="step-title">東大寺 大仏殿（冬期8:00開門・朝一番参拝）</div>
+      <div class="step-desc">
+        ホテルからバスまたはタクシーで約7〜10分。<br>
+        ・**冬期は8:00開門**。観光バスや団体客が押し寄せる（9:30以降）前の、澄み切った静寂の中で国宝・奈良の大仏さま（盧舎那仏 / るしゃなぶつ）をゆっくり拝観！<br>
+        ・国宝・南大門の運慶・快慶作「金剛力士像（仁王像）」の迫力に圧倒。<br>
+        ・24時間参拝できる二月堂へ足を伸ばせば、舞台から奈良盆地が一望！
+      </div>
+      <div class="step-child">👦 小5ポイント：教科書で習う聖徳太子・聖武天皇の時代へタイムスリップ！朝一は混雑ゼロで写真も撮り放題！</div>
+      <a href="https://www.todaiji.or.jp/" target="_blank" class="step-link">🔗 東大寺 公式サイト</a>
+    </div>
+
+    <div class="timeline-step">
+      <div class="step-time">09:45 ➡ 11:30</div>
+      <div class="step-title">ならまち散策 ＆ 早めのランチ ➡ ホテルで荷物受取</div>
+      <div class="step-desc">
+        猿沢池のほとりや三条通りでお土産選び・ランチ。JR奈良駅前のホテルで荷物をピックアップして駅へ。
+      </div>
+    </div>
+
+    <div class="timeline-step purple">
+      <div class="step-time" style="color:var(--purple);">12:00 ➡ 15:00 ⭐ 世界最古の木造建築 ＆ ポケふた巡り</div>
+      <div class="step-title">法隆寺駅 ➡ ポケふた5枚 ➡ 世界遺産 法隆寺</div>
+      <div class="step-desc">
+        JR奈良駅から大和路線でわずか3駅（約12分）で「JR法隆寺駅」へ！<br>
+        ・駅ロッカーに荷物を預ける。<br>
+        ・**奈良県唯一のポケふた全5枚**は、法隆寺駅〜法隆寺の参道沿い（約1.5km）に一直線に並んでいます！ドータクン、シキジカ、エンテイなどのマンホールを探しながら散策。<br>
+        ・聖徳太子ゆかりの**世界最古の木造建築・法隆寺（五重塔・金堂・大宝蔵院・百済観音）**を見学（冬は16:30閉門）。
+      </div>
+      <div class="step-child">👦 小5ポイント：聖徳太子の法隆寺！道中はポケモンGOのポケストップ＆ポケふたコンプリート！</div>
+      <a href="http://www.horyuji.or.jp/" target="_blank" class="step-link">🔗 法隆寺 公式サイト</a>
+    </div>
+
+    <div class="timeline-step">
+      <div class="step-time">15:30頃 ➡ 17:30頃</div>
+      <div class="step-title">法隆寺駅 ➡ 久宝寺乗換 ➡ 新大阪 ➡ 新幹線で岡山へ！</div>
+      <div class="step-desc">
+        法隆寺駅からJR大和路線区間快速に乗車。久宝寺駅で向かい側ホームのおおさか東線に乗換えて新大阪駅へ直通（約1時間）。新大阪から山陽新幹線「のぞみ」「さくら」で約45分で岡山駅へ！
+      </div>
+    </div>
+
+    <div class="timeline-step green">
+      <div class="step-time" style="color:var(--green);">18:00〜18:30頃</div>
+      <div class="step-title">早島のご実家に無事到着！🎉</div>
+      <div class="step-desc">
+        岡山駅から瀬戸大橋線・宇野線で早島へ。夜ごはんの時間にちょうど良く到着！
+      </div>
+    </div>
+  </div>
+
+  <!-- 宿泊ホテル詳細カード -->
+  <div class="sec-card">
+    <div class="sec-header">
+      <h2 class="sec-title">🏨 宿泊ホテル情報（予約確定済）</h2>
+      <span class="sec-badge badge-blue">12/29(火) 1泊</span>
+    </div>
+    <div style="font-size:12.5px; line-height:1.6;">
+      <strong style="font-size:14px; color:#0f172a;">天然温泉 吉野桜の湯 御宿 野乃 奈良</strong><br>
+      〒630-8236 奈良県奈良市大宮町1丁目1-6<br>
+      📞 TEL: <strong>0742-20-5489</strong><br>
+      🚶 JR奈良駅東口より徒歩約1分（近鉄奈良駅より徒歩約10分）<br>
+      ⏰ チェックイン 15:00 / チェックアウト 11:00<br>
+      🍳 朝食：和洋バイキング（いくら海鮮丼・柿の葉寿司・三輪そうめん等）<br>
+      ♨️ 最上階 天然温泉大浴場（内湯・半露天風呂・壺風呂・サウナ）<br>
+      🍜 21:30〜23:00 名物「夜鳴きそば」無料サービス<br>
+      <div style="margin-top:6px; padding:8px; background:#eff6ff; border-radius:8px; border:1px solid #bfdbfe;">
+        💳 <strong>お支払い：現地決済</strong>（共立メンテナンス株主優待電子チケットをフロントで提示）
+      </div>
+    </div>
+  </div>
+
+  <!-- 持ち物チェックリスト -->
+  <div class="sec-card">
+    <div class="sec-header">
+      <h2 class="sec-title">🎒 持ち物チェックリスト</h2>
+    </div>
+    <div style="font-size:12.5px; display:flex; flex-direction:column; gap:8px;">
+      <label style="background:#fff1f2; padding:8px 10px; border-radius:8px; border:1.5px solid #f43f5e; display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:18px; height:18px;">
+        <span style="color:#be123c; font-weight:800;">⚠️ 共立メンテナンス株主優待電子チケット（スマホ確認）</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:16px; height:16px;">
+        <span>🎫 新幹線・JRきっぷ（1ヶ月前購入）</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:16px; height:16px;">
+        <span>🧥 朝の防寒具（マフラー・手袋・ヒートテック・カイロ ※冬の奈良の朝は冷えます）</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:16px; height:16px;">
+        <span>👟 歩きやすいスニーカー（西本願寺・奈良公園・法隆寺で歩きます）</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:16px; height:16px;">
+        <span>🔋 モバイルバッテリー・スマホ充電器</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:16px; height:16px;">
+        <span>🪪 健康保険証・マイナンバーカード</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ボトム固定バー -->
+  <div class="bottom-fix">
+    <button class="btn-fix" style="background:#06c755; color:#fff;" onclick="shareToLine()">
+      💬 LINEで送る
+    </button>
+    <button class="btn-fix" style="background:#0284c7; color:#fff;" onclick="copyFullText()">
+      📋 全文コピー
+    </button>
+  </div>
+
+  <!-- トースト -->
+  <div class="toast" id="toast">コピーしました</div>
+
+  <script>
+    function getLineMessage() {
+      const pageUrl = window.location.href;
+      return `⛩️ 2026 年末 京都・奈良 家族旅行 旅のしおり ⛩️
+日程: 2026/12/29(火)〜12/30(水) 1泊2日
+人数: 家族3名（大人2名・小5子ども1名）
+
+📱 スマホ版しおりWEB:
+${pageUrl}
+
+🚆【1日目 12/29(火)】
+東戸塚 ➡ 新横浜 07:42発 ➡ 京都 09:32着（新幹線のぞみ）
+・京都駅に荷物を預けて西本願寺へ（市バス5分）
+・10:00〜10:30 西本願寺お坊さん無料境内ガイドツアー「お西さんを知ろう！」参加
+・世界遺産・国宝の巨大大広間＆日暮門・大銀杏見学
+・東本願寺の前を通りつつ京都駅へ戻ってランチ
+・京都駅からJR奈良線（みやこ路快速45分）で直通で奈良へ！
+・御宿 野乃 奈良に荷物を預けて奈良公園へ（鹿せんべい＆興福寺散策）
+🏨 天然温泉 吉野桜の湯 御宿 野乃 奈良
+TEL: 0742-20-5489（JR奈良駅東口徒歩1分）
+★全館畳敷き・最上階天然温泉・夜鳴きそば！
+⚠️【必携】共立メンテ株主優待電子チケットをフロントで提示！
+
+🦌【2日目 12/30(水)】
+・ホテル名物の海鮮丼朝食バイキング
+・08:00〜09:30 東大寺 大仏殿（冬期8時開門！混雑前の朝一番で大仏さま参拝）
+・ならまち散策・ランチ ➡ ホテルで荷物ピックアップ
+・JR奈良駅 ➡ 法隆寺駅（大和路線で12分）
+・ポケふた5枚を探しながら世界遺産・法隆寺（聖徳太子・五重塔）見学
+・法隆寺駅 ➡ 久宝寺乗換 ➡ 新大阪 ➡ 新幹線で岡山（早島の実家）へ18時頃到着！
+
+🎫【乗車券ハック】
+横浜市内➡岡山の通し乗車券で京都・奈良・法隆寺・新大阪すべて途中下車OK！`;
+    }
+
+    function shareToLine() {
+      const msg = getLineMessage();
+      const url = `https://line.me/R/msg/text/?${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    function copyFullText() {
+      const msg = getLineMessage();
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(msg).then(() => {
+          showToast('しおりのメッセージをコピーしました！');
+        });
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+  </script>
+</body>
+</html>
