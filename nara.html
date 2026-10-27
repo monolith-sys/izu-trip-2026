@@ -214,6 +214,44 @@
       z-index: 200;
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* 歴史ストーリー用スタイル */
+    .hist-card {
+      background: #fffdf5;
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .hist-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #92400e;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+      border-bottom: 1px dashed #fcd34d;
+      padding-bottom: 4px;
+    }
+    .hist-point {
+      font-size: 11.5px;
+      color: #78350f;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .hist-point:last-child { margin-bottom: 0; }
+    .hist-point strong { color: #b45309; }
+    .hist-tag {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
   </style>
 </head>
 <body>
@@ -269,28 +307,28 @@
     </div>
 
     <div class="timeline-step">
-      <div class="step-time">07:00頃 ➡ 07:42</div>
-      <div class="step-title">東戸塚発 ➡ 新横浜駅へ</div>
+      <div class="step-time">08:15頃 ➡ 08:50</div>
+      <div class="step-title">東戸塚発 ➡ 新横浜駅へ（ゆったり出発）</div>
       <div class="step-desc">
-        JR横須賀線で横浜駅、市営地下鉄ブルーラインで新横浜駅へ（約30分）。新横浜駅で朝ごはんを購入。
+        JR横須賀線で横浜駅、市営地下鉄ブルーラインで新横浜駅へ（約30分）。朝のラッシュを避けて余裕を持って出発。新横浜駅で朝ごはんを購入。
       </div>
     </div>
 
     <div class="timeline-step">
-      <div class="step-time">07:42発 ➡ 09:32着</div>
-      <div class="step-title">東海道新幹線 のぞみ（新横浜 ➡ 京都）</div>
+      <div class="step-time">09:00頃発 ➡ 10:50頃着</div>
+      <div class="step-title">東海道新幹線 のぞみ（新横浜 ➡ 京都・EX予約）</div>
       <div class="step-desc">
-        新幹線で約1時間50分。京都駅八条口または中央口のコインロッカーにスーツケースを預けて身軽に行動！<br>
+        新幹線で約1時間50分。車内で朝ごはん。京都駅八条口または中央口のコインロッカーにスーツケースを預けて身軽に行動！<br>
         <small style="color:var(--muted);">※指定席発売：乗車1ヶ月前 11/29(日) 10:00〜</small>
       </div>
     </div>
 
     <div class="timeline-step purple">
-      <div class="step-time" style="color:var(--purple);">09:50 ➡ 11:15 ⭐ 浄土真宗の総本山</div>
+      <div class="step-time" style="color:var(--purple);">11:15 ➡ 12:15 ⭐ 浄土真宗の総本山</div>
       <div class="step-title">西本願寺（お西さん）参拝 ＆ 無料お坊さんガイドツアー</div>
       <div class="step-desc">
         京都駅烏丸口から市バス約5分（または徒歩約15分）。入山無料・予約不要。<br>
-        ・<strong>10:00〜10:30：お坊さんの無料境内案内「お西さんを知ろう！」に参加！</strong>（集合：御影堂門すぐのお茶所）<br>
+        ・<strong>11:30〜12:00：お坊さんの無料境内案内「お西さんを知ろう！」第2回に参加！</strong>（集合：御影堂門すぐのお茶所）<br>
         ・床板の「隠れ埋め木（富士山や魚の形）」を探すなど小5もワクワク！<br>
         ・巨大な国宝「御影堂」「阿弥陀堂」の大広間に座り、我が家のルーツ・浄土真宗の圧倒的スケールを体感。<br>
         ・国宝「唐門（日暮門）」や天然記念物「大銀杏」を見学。
@@ -300,7 +338,7 @@
     </div>
 
     <div class="timeline-step">
-      <div class="step-time">11:30 ➡ 12:45</div>
+      <div class="step-time">12:15 ➡ 13:15</div>
       <div class="step-title">東本願寺の前を通りつつ京都駅へ ＆ ランチ</div>
       <div class="step-desc">
         西本願寺から東へ歩き、徳川家康が建てさせた「東本願寺」の日本一高い木造山門（御影堂門）を眺めながら京都駅へ（徒歩約10分）。駅ビルやポルタで京都ランチ！駅ロッカーの荷物をピックアップ。
@@ -308,23 +346,23 @@
     </div>
 
     <div class="timeline-step">
-      <div class="step-time">13:00頃 ➡ 13:45着</div>
+      <div class="step-time">13:30頃 ➡ 14:15着</div>
       <div class="step-title">JR奈良線（みやこ路快速）で JR奈良駅へ直通！</div>
       <div class="step-desc">
-        京都駅からみやこ路快速で約45分。乗り換えなしでJR奈良駅へ快適移動。
+        京都駅からみやこ路快速で約45分（Suicaタッチ乗車）。乗り換えなしでJR奈良駅へ快適移動。
       </div>
     </div>
 
     <div class="timeline-step green">
-      <div class="step-time" style="color:var(--green);">14:00 ➡ 17:00 🦌 奈良公園＆ならまち散策</div>
+      <div class="step-time" style="color:var(--green);">14:30 ➡ 17:00 🦌 奈良公園＆ならまち散策</div>
       <div class="step-title">ホテル荷物預け ➡ 奈良公園の鹿 ＆ 興福寺・ならまち</div>
       <div class="step-desc">
         JR奈良駅東口徒歩1分の**「御宿 野乃 奈良」**にまず荷物を預けて手ぶらに！<br>
-        ・三条通りを歩いて奈良公園へ。鹿せんべいを買って鹿とふれあい！<br>
+        ・三条通りを歩いて奈良公園へ。鹿せんべいを買って鹿とふれあい！（ダウンジャケット着用・せんべい持たずにカメラ役に徹すれば汚れません！）<br>
         ・世界遺産・興福寺（五重塔・国宝館）を散策。<br>
         ・レトロな町家が並ぶ「ならまち」でお茶・スイーツ休憩。
       </div>
-      <div class="step-child">👦 小5ポイント：人懐っこい鹿たちに囲まれる奈良公園！お辞儀する鹿せんべいタイム！</div>
+      <div class="step-child">👦 小5ポイント：1300年守られてきた神の使い「神鹿」！お辞儀する鹿せんべいタイム！</div>
     </div>
 
     <div class="timeline-step green">
@@ -356,15 +394,15 @@
     </div>
 
     <div class="timeline-step amber">
-      <div class="step-time" style="color:var(--amber);">08:00 ➡ 09:30 ⭐ 朝の特権！静寂の大仏さま</div>
-      <div class="step-title">東大寺 大仏殿（冬期8:00開門・朝一番参拝）</div>
+      <div class="step-time" style="color:var(--amber);">08:00 ➡ 09:30 ⭐ 朝の特権！静寂の大仏さま＆二月堂</div>
+      <div class="step-title">東大寺 大仏殿 ➡ 二月堂（高台の舞台から大仏殿を一望！）</div>
       <div class="step-desc">
         ホテルからバスまたはタクシーで約7〜10分。<br>
         ・**冬期は8:00開門**。観光バスや団体客が押し寄せる（9:30以降）前の、澄み切った静寂の中で国宝・奈良の大仏さま（盧舎那仏 / るしゃなぶつ）をゆっくり拝観！<br>
         ・国宝・南大門の運慶・快慶作「金剛力士像（仁王像）」の迫力に圧倒。<br>
-        ・24時間参拝できる二月堂へ足を伸ばせば、舞台から奈良盆地が一望！
+        ・**高台の「二月堂」へ**（参拝自由・無料）：京都・清水寺のような舞台造りのお堂！舞台の上に立つと、眼下に東大寺大仏殿の巨大な屋根と奈良盆地が一望できる絶景スポットです。「お水取り」の舞台としても有名！
       </div>
-      <div class="step-child">👦 小5ポイント：教科書で習う聖徳太子・聖武天皇の時代へタイムスリップ！朝一は混雑ゼロで写真も撮り放題！</div>
+      <div class="step-child">👦 小5ポイント：聖武天皇と行基の大プロジェクト！朝一は混雑ゼロで写真も撮り放題！二月堂舞台からの景色は必見！</div>
       <a href="https://www.todaiji.or.jp/" target="_blank" class="step-link">🔗 東大寺 公式サイト</a>
     </div>
 
@@ -406,6 +444,99 @@
     </div>
   </div>
 
+  <!-- 歴史ストーリー＆豆知識ガイド -->
+  <div class="sec-card">
+    <div class="sec-header">
+      <h2 class="sec-title">🏛️ 旅が100倍面白くなる！歴史ストーリー</h2>
+      <span class="sec-badge badge-purple">小5社会科＆大人の教養</span>
+    </div>
+    
+    <!-- 西本願寺 -->
+    <div class="hist-card">
+      <div class="hist-title">
+        <span>🏯 西本願寺：信長との10年戦争 ＆ 秀吉・家康の思惑</span>
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">戦国ドラマ</span><strong>織田信長を一番苦しめた最強の敵！</strong><br>
+        武田信玄でも上杉謙信でもなく、信長が10年間も決着をつけられなかった最大のライバルが「本願寺（一向一揆）」。団結した門徒の力に信長は最も手を焼きました。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">お西とお東</span><strong>なぜ京都に「西」と「東」の本願寺があるの？</strong><br>
+        信長の後に天下を取った豊臣秀吉が、本願寺に広大な土地を寄進してできたのが現在の「西本願寺」。その後、徳川家康が本願寺の絶大な勢力を恐れて二分させるため、すぐ東に「東本願寺」を建てさせました。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">見どころ</span><strong>大工さんの遊び心「隠れ埋め木」を探そう！</strong><br>
+        御影堂の床板の節穴を、大工さんたちが「富士山」「ひょうたん」「魚」「桔梗」などの木片で埋めています。宝探し感覚で足元を探してみましょう！
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">国宝</span><strong>日が暮れるまで見惚れる「日暮門（唐門）」</strong><br>
+        伏見城から移築されたと伝わる極彩色の門。細密な彫刻があまりにも見事で「日が暮れるのを忘れて見入ってしまう」ことから名付けられました。
+      </div>
+    </div>
+
+    <!-- 奈良の鹿＆興福寺 -->
+    <div class="hist-card">
+      <div class="hist-title">
+        <span>🦌 奈良の鹿＆興福寺：1300年続く「神の使い」伝説</span>
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">神鹿伝説</span><strong>なぜ奈良には鹿がたくさんいるの？</strong><br>
+        今から約1300年前（奈良時代）、春日大社に祀られる神様（武甕槌命）が茨城県の鹿島神宮から「白い鹿」に乗って奈良にやってきたという伝説から、神様の使い「神鹿（しんろく）」として手厚く保護されてきました。現在も国の特別天然記念物です。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">鹿のトリビア</span><strong>お辞儀は「ちょうだい！」のサイン</strong><br>
+        ペコッとお辞儀をする可愛い仕草は、観光客と接する中で身についた「早くせんべい頂戴！」の合図。せんべいが終わったら「両手を広げてパー」を見せると、鹿は「もう無いな」と理解して去っていきます。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">興福寺</span><strong>大化の改新・中臣鎌足（藤原氏）の寺</strong><br>
+        大化の改新（645年）の中心人物・中臣鎌足（藤原鎌足）とその子・不比等の氏寺。古都奈良のシンボルである五重塔（高さ約50m）は、京都の東寺に次ぐ日本第2位の高さを誇ります。
+      </div>
+    </div>
+
+    <!-- 東大寺・大仏殿・二月堂 -->
+    <div class="hist-card">
+      <div class="hist-title">
+        <span>📿 東大寺・大仏殿・二月堂：聖武天皇の悲願と国民プロジェクト</span>
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">大仏の理由</span><strong>なぜ巨大な大仏を作ったの？（聖武天皇）</strong><br>
+        奈良時代、天然痘（伝染病）の大流行で人口の3分の1が亡くなり、大地震や大飢饉、貴族の反乱が相次ぎました。悲しんだ聖武天皇は「生きとし生けるすべてのものが幸せになれるように」と仏教の力で国を安定させる（鎮護国家）ために大仏建立を決意しました。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">国家事業</span><strong>行基と国民260万人が力を合わせた！</strong><br>
+        教科書で習う僧侶・行基（ぎょうき）が民衆に協力を呼びかけ、当時の日本人の約半分にあたる延べ260万人もの人々が寄付や木材・銅の運搬などで協力して完成させました。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">手のひら</span><strong>右手と左手のポーズの意味は？</strong><br>
+        右手「施無畏印（せむいいん）」＝『怖がらなくていいよ』と人々の恐れを取り除くサイン。<br>
+        左手「与願印（よがんいん）」＝『みんなの願いを叶えるよ』と恵みを与えるサイン。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">二月堂</span><strong>1270年以上一度も途切れていない「お水取り」</strong><br>
+        大仏殿の東の高台にある二月堂。752年の開創以来、戦争のときも一度も途切れず毎年続けられている不退の行事です。舞台からは大仏殿の大屋根と奈良盆地が一望できます！
+      </div>
+    </div>
+
+    <!-- 法隆寺 -->
+    <div class="hist-card">
+      <div class="hist-title">
+        <span>⛩️ 法隆寺：聖徳太子が建てた世界最古の木造建築</span>
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">世界遺産</span><strong>1400年前の木が今も生きている！</strong><br>
+        推古天皇と聖徳太子（厩戸皇子）によって607年に創建された、日本最初の世界文化遺産。使われているヒノキは1400年前のもので、今でもカンナで削るとヒノキの良い香りがする世界最古の奇跡の木造建築です。
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">ハイテク</span><strong>スカイツリーに受け継がれた五重塔の耐震技術</strong><br>
+        法隆寺の五重塔は1400年間、一度も地震で倒れたことがありません。中央を貫く一本の太い柱（心柱）が、各層の揺れを打ち消し合う耐震構造になっており、この免震技術が「東京スカイツリー」の最新耐震設計にそのまま採用されています！
+      </div>
+      <div class="hist-point">
+        <span class="hist-tag">シルクロード</span><strong>古代ギリシャとつながる柱「エンタシス」</strong><br>
+        金堂の柱をよく見ると、真ん中あたりが少しふくらんでいます。これは古代ギリシャのパルテノン神殿と同じ建築技法で、シルクロードを通って古代日本まで文化が伝わったロマンの証拠です。
+      </div>
+    </div>
+  </div>
+
   <!-- 宿泊ホテル詳細カード -->
   <div class="sec-card">
     <div class="sec-header">
@@ -439,7 +570,15 @@
       </label>
       <label style="display:flex; align-items:center; gap:8px;">
         <input type="checkbox" style="width:16px; height:16px;">
-        <span>🧥 朝の防寒具（マフラー・手袋・ヒートテック・カイロ ※冬の奈良の朝は冷えます）</span>
+        <span>🧥 撥水ダウン（ユニクロ等のつるつる素材 ※鹿対策＆防寒に最適！）</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:16px; height:16px;">
+        <span>🧴 除菌ウェットティッシュ（鹿せんべい後の手拭き・服の汚れサッと拭き用）</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" style="width:16px; height:16px;">
+        <span>🧣 朝の防寒具（マフラー・手袋・ヒートテック・カイロ ※冬の奈良の朝は冷えます）</span>
       </label>
       <label style="display:flex; align-items:center; gap:8px;">
         <input type="checkbox" style="width:16px; height:16px;">
@@ -476,27 +615,26 @@
 日程: 2026/12/29(火)〜12/30(水) 1泊2日
 人数: 家族3名（大人2名・小5子ども1名）
 
-📱 スマホ版しおりWEB:
+📱 スマホ版しおりWEB（歴史ストーリー・写真・地図付き）:
 ${pageUrl}
 
 🚆【1日目 12/29(火)】
-東戸塚 ➡ 新横浜 07:42発 ➡ 京都 09:32着（新幹線のぞみ・EX予約）
+東戸塚 08:15発 ➡ 新横浜 09:00発 ➡ 京都 10:50着（のぞみ・ゆったり出発）
 ・京都駅に荷物を預けて西本願寺へ（市バス5分）
-・10:00〜10:30 西本願寺お坊さん無料境内ガイドツアー「お西さんを知ろう！」参加
-・世界遺産・国宝の巨大大広間＆日暮門・大銀杏見学
+・11:30〜12:00 西本願寺お坊さん無料境内ガイドツアー「お西さんを知ろう！」第2回参加
+　★織田信長・豊臣秀吉ゆかりの総本山！国宝の巨大大広間＆日暮門・床板の隠れ埋め木探し
 ・東本願寺の前を通りつつ京都駅へ戻ってランチ
-・京都駅からJR奈良線（みやこ路快速45分・SuicaOK）で直通で奈良へ！
-・御宿 野乃 奈良に荷物を預けて奈良公園へ（鹿せんべい＆興福寺散策）
-🏨 天然温泉 吉野桜の湯 御宿 野乃 奈良
-TEL: 0742-20-5489（JR奈良駅東口徒歩1分）
-★全館畳敷き・最上階天然温泉・夜鳴きそば！
+・京都駅からJR奈良線（みやこ路快速45分・Suicaタッチ）で直通で奈良へ！
+・14:30〜 野乃 奈良に荷物を預けて奈良公園へ（神の使い「神鹿」せんべい＆興福寺散策）
+🏨 天然温泉 吉野桜の湯 御宿 野乃 奈良（JR奈良駅東口徒歩1分）
+★全館畳敷き・最上階天然温泉・夜鳴きそば！現地決済
 
 🦌【2日目 12/30(水)】
 ・ホテル名物の海鮮丼朝食バイキング
-・08:00〜09:30 東大寺 大仏殿（冬期8時開門！混雑前の朝一番で大仏さま参拝）
+・08:00〜09:30 東大寺 大仏殿 ＆ 二月堂（冬期8時開門！朝一番で大仏さま参拝＆高台の舞台から大仏殿を一望！）
 ・ならまち散策・ランチ ➡ ホテルで荷物ピックアップ
 ・JR奈良駅 ➡ 法隆寺駅（大和路線12分・SuicaOK）
-・ポケふた5枚を探しながら世界遺産・法隆寺（聖徳太子・五重塔）見学
+・奈良県唯一のポケふた5枚を探しながら参道散策 ＆ 世界最古の木造建築・法隆寺（聖徳太子・五重塔）見学！
 ・法隆寺駅 ➡ 久宝寺乗換 ➡ 新大阪 ➡ 新幹線（EX予約）で岡山（早島の実家）へ18時頃到着！
 
 🚆【きっぷ・移動】
